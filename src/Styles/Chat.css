@@ -1,0 +1,53 @@
+.background{
+    min-height: 100vh;
+    width: 100%;
+    background-color: #99723A;;
+    font-family: sans-serif;
+    display: flex;
+}
+
+.ChatMainBody{
+    background:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("./assets/cafe.jpg");
+    /* Using the background-image property with a linear gradient: The background-image property in CSS supports the use of multiple backgrounds that are layered on top of each other. 
+    Using the linear-gradient property, a black colored background is used as the front layer and the image to be darkened is used as the back layer. 
+    The order of the background-image property specifies the front layer to be specified first before defining the layers at the back. 
+    The opacity of the black gradient can be changed to control the amount of darkening. This can be used accordingly to darken the image as required*/
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-size: cover; */
+    background-size:1600px 1000px; 
+    border-radius: 20px;
+    width:100%;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+    box-shadow:black 5px 5px 10px;
+}
+
+#ChatBtn:hover{
+    cursor: pointer;
+}
+
+textarea{
+    width: 95%;
+    background-color: #7F7053;
+    color: #fff;
+    padding: 10px; /* Added padding for better visual appearance */
+    border: none; /* Removed default border */
+    border-radius: 5px;
+    margin-top: auto;
+    margin-bottom: 5px;
+}
+::placeholder{
+    color:white;
+}
+.SideMenu{
+    background-color: #E0C686;
+    width: 20%;
+    height: 880px;
+}
