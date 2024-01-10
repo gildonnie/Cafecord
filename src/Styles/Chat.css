@@ -41,7 +41,7 @@ textarea{
     border: none; /* Removed default border */
     border-radius: 5px;
     margin-top: auto;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 ::placeholder{
     color:white;
@@ -50,4 +50,45 @@ textarea{
     background-color: #E0C686;
     width: 20%;
     height: 880px;
+}
+.messages{
+    background-color: white;
+    color: black;
+    border-radius: 40px 10px 10px 40px;
+    display: flex;
+    justify-content: center;
+    align-items:flex-end;
+    gap: 10px;
+}
+.message-structure{
+    display: flex;
+    flex-direction: column;
+}
+.message-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right:5px
+  }
+  
+.message-details {
+    display: flex;
+    justify-content: space-between;
+    flex-direction:row;
+    font-size: 12px;
+    color: gray;
+    margin-top:5px;
+  }
+.messages img{
+    width:75px;
+    border-radius: 50px;
+}
+
+.deleteBtn{
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:10px;
+    height: 15px;
 }

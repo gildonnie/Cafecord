@@ -4,6 +4,8 @@ import "../Styles/Chat.css"
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
+// import Toast from 'react-bootstrap/Toast';
+
 function Chat() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
 
@@ -40,29 +42,40 @@ function Chat() {
       </div>
       <div className='ChatMainBody'>
         <h1>Cafecord</h1>
-        <h1>This is the start of the chat area.</h1>
-        <Button
-          id='ChatBtn'
-          className="btn btn-danger"
-          type="Button"
-          onClick={handleModalToggle}
-        >
-          Delete Message
-        </Button>
-        <Modal show={showModal} onHide={handleModalToggle}>
-          <Modal.Header closeButton>
-            <Modal.Title>Delete Message</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>Are you sure you want to delete message?</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleModalToggle}>
-              Close
-            </Button>
-            <Button variant="primary">Yes</Button>
-          </Modal.Footer>
-        </Modal>
+        <div className='messages'>
+          <div className="message-info">
+            <img src='./public/Avatars/Beeo-o.jpg' alt="User Avatar" />
+            <div className='message-structure'>
+              <div className="message-details">
+                <p>Cafevibes</p>
+                <p>Sent-12:03pm</p>
+                <Button
+                  id='ChatBtn'
+                  className="btn btn-danger deleteBtn"
+                  type="Button"
+                  onClick={handleModalToggle}
+                >
+                  X
+                </Button>
+                <Modal show={showModal} onHide={handleModalToggle}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Delete Message</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <p>Are you sure you want to delete message?</p>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleModalToggle}>
+                      Close
+                    </Button>
+                    <Button variant="primary">Yes</Button>
+                  </Modal.Footer>
+                </Modal>
+              </div>
+              <p>Hey Antonia! How is the new French press?</p>
+            </div>
+          </div>
+        </div>
         <textarea type='text' placeholder='Enter Message'></textarea>
       </div>
     </div>
