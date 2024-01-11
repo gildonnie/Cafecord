@@ -6,7 +6,22 @@
     display: flex;
 }
 
+.chat-title{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo{
+    width: 50px;
+    border-radius: 25px;
+}
+
 .ChatMainBody{
+    /* border: purple solid; */
+    max-width: 100%;
     background:linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("./assets/cafe.jpg");
     /* Using the background-image property with a linear gradient: The background-image property in CSS supports the use of multiple backgrounds that are layered on top of each other. 
     Using the linear-gradient property, a black colored background is used as the front layer and the image to be darkened is used as the back layer. 
@@ -18,15 +33,15 @@
     /* background-size: cover; */
     background-size:1600px 1000px; 
     border-radius: 20px;
-    width:100%;
     margin: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px;  
     color: white;
     box-shadow:black 5px 5px 10px;
+
 }
 
 #ChatBtn:hover{
@@ -34,7 +49,8 @@
 }
 
 textarea{
-    width: 95%;
+    width: 100%;
+    max-width: 95%; /* Adjust the percentage as needed */
     background-color: #7F7053;
     color: #fff;
     padding: 10px; /* Added padding for better visual appearance */
@@ -42,7 +58,7 @@ textarea{
     border-radius: 5px;
     margin-top: auto;
     margin-bottom: 10px;
-}
+} 
 ::placeholder{
     color:white;
 }
@@ -52,23 +68,47 @@ textarea{
     height: 880px;
 }
 .messages{
-    background-color: white;
+    background-color: rgb(211, 211, 211);
     color: black;
-    border-radius: 40px 10px 10px 40px;
-    display: flex;
-    justify-content: center;
-    align-items:flex-end;
-    gap: 10px;
+    /* border: blue solid; */
+    max-width: 29%;
+    /* display: flex; */
+    /* border-radius: 40px 10px 10px 40px; */
+    /* justify-content: center; */
+    /* align-items:flex-end; */
+    /* gap: 10px; */
+    /* flex-direction: column; */
 }
+
+.sent{
+    margin-left:800px;
+    border-radius: 40px 10px 10px 40px;
+    padding-right:5px;
+}
+
+.received{
+    margin-right: 800px;
+    border-radius: 10px 40px 40px 10px;
+    padding-left:5px;
+    overflow:hidden;
+}
+
 .message-structure{
     display: flex;
     flex-direction: column;
 }
+
+.message-structure > p{
+    
+    /* border: red solid; */
+    flex-wrap: wrap;
+    height: auto;
+}
 .message-info {
     display: flex;
-    align-items: center;
+    align-items:flex-start;
+    margin-top: 5px;
     gap: 10px;
-    margin-right:5px
   }
   
 .message-details {
