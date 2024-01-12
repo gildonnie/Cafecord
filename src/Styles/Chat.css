@@ -31,66 +31,57 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     /* background-size: cover; */
-    background-size:1600px 1000px; 
+    background-size:1700px 1000px; 
     border-radius: 20px;
-    margin: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;  
+    gap: 20px; 
     color: white;
     box-shadow:black 5px 5px 10px;
-
+    overflow:hidden;
+    padding-bottom: 100px;
 }
 
-#ChatBtn:hover{
-    cursor: pointer;
-}
 
-textarea{
-    width: 100%;
-    max-width: 95%; /* Adjust the percentage as needed */
-    background-color: #7F7053;
-    color: #fff;
-    padding: 10px; /* Added padding for better visual appearance */
-    border: none; /* Removed default border */
-    border-radius: 5px;
-    margin-top: auto;
-    margin-bottom: 10px;
-} 
 ::placeholder{
     color:white;
 }
 .SideMenu{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position:sticky;
+    width: 10%;
     background-color: #E0C686;
-    width: 20%;
-    height: 880px;
+
 }
 .messages{
     background-color: rgb(211, 211, 211);
     color: black;
-    /* border: blue solid; */
-    max-width: 29%;
-    /* display: flex; */
-    /* border-radius: 40px 10px 10px 40px; */
-    /* justify-content: center; */
-    /* align-items:flex-end; */
-    /* gap: 10px; */
-    /* flex-direction: column; */
+    max-width: 28%;
+    overflow: hidden;
 }
 
 .sent{
-    margin-left:800px;
-    border-radius: 40px 10px 10px 40px;
+    margin-left:60%;
+    border-radius: 10px 10px 10px 10px;
     padding-right:5px;
+    padding-left:5px;
+
 }
 
 .received{
-    margin-right: 800px;
-    border-radius: 10px 40px 40px 10px;
+    margin-right:60%;
+    border-radius: 10px 10px 10px 10px;
     padding-left:5px;
-    overflow:hidden;
+    padding-right:5px;
+  
 }
 
 .message-structure{
@@ -120,6 +111,7 @@ textarea{
     margin-top:5px;
   }
 .messages img{
+    box-shadow: 1px 1px 1px 1px;
     width:75px;
     border-radius: 50px;
 }
@@ -131,4 +123,25 @@ textarea{
     justify-content: center;
     width:10px;
     height: 15px;
+}
+
+Button > p{
+    font-size: 1vw;
+}
+
+textarea{
+    width: 100%;
+    max-width: 85%; /* Adjust the percentage as needed */
+    background-color: #7F7053;
+    color: #fff;
+    padding: 10px; /* Added padding for better visual appearance */
+    border: none; /* Removed default border */
+    border-radius: 5px;
+    /* margin-top: 200px; */
+    /* margin-bottom: 10px; */
+}
+
+.text-input{
+    position:fixed;
+    bottom: 15px;
 }
