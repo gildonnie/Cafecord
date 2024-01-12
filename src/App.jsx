@@ -11,7 +11,7 @@ function App() {
     <Routes key={location.pathname} location={location} >
       <Route index element={<Login />} />
       <Route path="/chat" element={<Chat />} />
-    </Routes>
+    </Routes> 
   )
 }
 
