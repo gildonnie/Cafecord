@@ -29,7 +29,7 @@ export default function Login() {
         <div className={`${styles['img']} h-100 col-12 col-md-6`}></div>
         <div className={` ${styles['right-container']} col-md-6`}>
           <div className={`${styles['right-inner-container']}`}>
-            <h1 className="mb-4">Welcome back,</h1>
+            <h1 className="mb-5">Welcome back,</h1>
             <label htmlFor="loginEmail"></label>
             <input className={`${styles['email-input']}`} onChange={e => {handleEmail(e.target.value)}} type="text" name="loginEmail" placeholder="email"></input>
             <label htmlFor="loginPassword"></label>
@@ -37,7 +37,7 @@ export default function Login() {
               <input className={`${styles['password-input']} position-relative`} onChange={e => {handlePassword(e.target.value)}} type={showPassword ? 'text' : 'password'} name="loginPassword" placeholder="password">
               </input>
               <span className={`${styles['password-visibility']}`} onClick={togglePasswordVisibility}>
-                {showPassword ? <i class="bi bi-eye-fill"></i> : <i class="bi bi-eye-slash"></i>}
+                {showPassword ? <i className="bi bi-eye-fill"></i> : <i className="bi bi-eye-slash"></i>}
               </span>
             </div>
             <button className={`${styles['login-btn']} w-100`} onClick={handleLogin()}>Login</button>

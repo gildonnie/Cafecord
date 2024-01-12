@@ -1,15 +1,7 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
-
 .email-input {
   width: 100%;
   border-radius: 2rem;
   background: #E4D2B7;
-  /* color: #; */
   outline: none;
   border: none;
   padding: 11px 23px;
@@ -24,11 +16,9 @@
   width: 100%;
   border-radius: 2rem;
   background: #E4D2B7;
-  /* color: #757575; */
   outline: none;
   border: none;
   padding: 11px 23px;
-  /* margin-bottom: 1.5rem; */
 }
 
 .password-input::placeholder {
@@ -44,7 +34,6 @@
 
 .divider {
   text-align: center;
-  /* background: inherit; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,9 +69,7 @@
   padding: 4rem;
   position: relative;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
-  /* background: #E4D2B7; */
 }
 
 .right-inner-container {
