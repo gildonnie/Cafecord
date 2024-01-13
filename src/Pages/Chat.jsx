@@ -1,24 +1,34 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import "../Styles/Chat.css"
-import Modal from 'react-bootstrap/Modal'
+// import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 // import Toast from 'react-bootstrap/Toast';
 
 function Chat() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
-
   const handleOffcanvasToggle = () => setShowOffcanvas(!showOffcanvas);
 
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
+  // const handleModalToggle = () => setShowModal(!showModal);
 
-  const handleModalToggle = () => setShowModal(!showModal);
+
+  function deleteMessage(button) {
+    // Get the parent message element
+    var message = button.closest('.messages');
+
+    // Confirm deletion (you can customize this part)
+    if (confirm("Are you sure you want to delete this message?")) {
+      // Remove the message element
+      message.remove();
+    }
+  }
   return (
     <div className='background'>
       <div className='SideMenu'>
-        <Button id='ChatBtn'
-          className="btn btn-primary"
+        <Button
+          className="btn btn-primary side-btn"
           type="Button"
           onClick={handleOffcanvasToggle}
         >
@@ -38,43 +48,39 @@ function Chat() {
             <p>Choose new avatar.</p>
           </Offcanvas.Body>
         </Offcanvas>
-        <Link to='/Login'><Button id='ChatBtn' variant="info"><p>Logout</p></Button>{' '}</Link>
+        <Link to='/Login'><Button className="side-btn" variant="info"><p>Logout</p></Button>{' '}</Link>
       </div>
       <div className='ChatMainBody'>
         <div className='chat-title'>
-          <img className='logo' src="./public/assets/cafeLogo2.jpg" />
+          <img className='logo' src="/assets/cafeLogo2.jpg" />
           <h1>Cafecord</h1>
         </div>
 
         <div className='messages sent'>
           <div className="message-info">
+          <Button
+                
+                className="btn btn-danger mobile-deleteBtn"
+                type="Button"
+                onClick={(e) => deleteMessage(e.target)}
+                // onClick={handleModalToggle}
+              >
+                x
+              </Button>
             <img src='/Avatars/Beeo-o.jpg' alt="User Avatar" />
             <div className='message-structure'>
               <div className="message-details">
                 <p>Cafevibes209</p>
                 <p>Sent-12:03pm</p>
                 <Button
-                  id='ChatBtn'
+                
                   className="btn btn-danger deleteBtn"
                   type="Button"
-                  onClick={handleModalToggle}
+                  onClick={(e) => deleteMessage(e.target)}
+                  // onClick={handleModalToggle}
                 >
                   X
                 </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
               </div>
               <p>Hey Antonia! How is the new French press?</p>
             </div>
@@ -83,318 +89,64 @@ function Chat() {
 
         <div className='messages received'>
           <div className="message-info">
+          <Button
+                
+                className="btn btn-danger mobile-deleteBtn"
+                type="Button"
+                onClick={(e) => deleteMessage(e.target)}
+                // onClick={handleModalToggle}
+              >
+                x
+              </Button>
+            <img src='/Avatars/cafeart.jpg' alt="User Avatar" />
             <div className='message-structure'>
-              <div className="message-details">
+              <div className="message-details">    
+                <p>AntoniaLatte</p>
+                <p>Sent-12:09pm</p>
                 <Button
-                  id='ChatBtn'
+                
                   className="btn btn-danger deleteBtn"
                   type="Button"
-                  onClick={handleModalToggle}
+                  onClick={(e) => deleteMessage(e.target)}
+                  // onClick={handleModalToggle}
                 >
                   X
                 </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-                <p>Sent-12:09pm</p>
-                <p>AntoniaLatte</p> 
               </div>
               <p>Its working well! Im making a second cup lol!</p>
             </div>
-            <img src='/Avatars/cafeart.jpg' alt="User Avatar" />
           </div>
         </div>
 
 
         <div className='messages received'>
           <div className="message-info">
+          <Button
+                
+                className="btn btn-danger mobile-deleteBtn"
+                type="Button"
+                onClick={(e) => deleteMessage(e.target)}
+                // onClick={handleModalToggle}
+              >
+                x
+              </Button>
+            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
             <div className='message-structure'>
               <div className="message-details">
+                <p>AustinBrew</p>
+                <p>Sent-12:15pm</p>
                 <Button
-                  id='ChatBtn'
+                
                   className="btn btn-danger deleteBtn"
                   type="Button"
-                  onClick={handleModalToggle}
+                  onClick={(e) => deleteMessage(e.target)}
+                  // onClick={handleModalToggle}
                 >
                   X
                 </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-                <p>Sent-12:15pm</p>
-                <p>AustinBrew</p> 
               </div>
               <p>Hey I want one!! That sounds so good! yum I need a cup or 3 right now! This project and frying my brain! This is driving me insane in the membrane!! Ahhhh I wanna go home but im already there...</p>
             </div>
-            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
-          </div>
-        </div>
-
-        <div className='messages received'>
-          <div className="message-info">
-            <div className='message-structure'>
-              <div className="message-details">
-                <Button
-                  id='ChatBtn'
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={handleModalToggle}
-                >
-                  X
-                </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-                <p>Sent-12:15pm</p>
-                <p>AustinBrew</p> 
-              </div>
-              <p>Hey I want one!! That sounds so good! yum I need a cup or 3 right now! This project and frying my brain! This is driving me insane in the membrane!! Ahhhh I wanna go home but im already there...</p>
-            </div>
-            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
-          </div>
-        </div>
-
-        <div className='messages received'>
-          <div className="message-info">
-            <div className='message-structure'>
-              <div className="message-details">
-                <Button
-                  id='ChatBtn'
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={handleModalToggle}
-                >
-                  X
-                </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-                <p>Sent-12:15pm</p>
-                <p>AustinBrew</p> 
-              </div>
-              <p>Hey I want one!! That sounds so good! yum I need a cup or 3 right now! This project and frying my brain! This is driving me insane in the membrane!! Ahhhh I wanna go home but im already there...</p>
-            </div>
-            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
-          </div>
-        </div>
-
-        <div className='messages received'>
-          <div className="message-info">
-            <div className='message-structure'>
-              <div className="message-details">
-                <Button
-                  id='ChatBtn'
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={handleModalToggle}
-                >
-                  X
-                </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-                <p>Sent-12:15pm</p>
-                <p>AustinBrew</p> 
-              </div>
-              <p>Hey I want one!! That sounds so good! yum I need a cup or 3 right now! This project and frying my brain! This is driving me insane in the membrane!! Ahhhh I wanna go home but im already there...</p>
-            </div>
-            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
-          </div>
-        </div>
-
-
-        <div className='messages sent'>
-          <div className="message-info">
-            <img src='/Avatars/Beeo-o.jpg' alt="User Avatar" />
-            <div className='message-structure'>
-              <div className="message-details">
-                <p>Cafevibes209</p>
-                <p>Sent-12:03pm</p>
-                <Button
-                  id='ChatBtn'
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={handleModalToggle}
-                >
-                  X
-                </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-              </div>
-              <p>Hey Antonia! How is the new French press?</p>
-            </div>
-          </div>
-        </div>
-
-        <div className='messages received'>
-          <div className="message-info">
-            <div className='message-structure'>
-              <div className="message-details">
-                <Button
-                  id='ChatBtn'
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={handleModalToggle}
-                >
-                  X
-                </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-                <p>Sent-12:15pm</p>
-                <p>AustinBrew</p> 
-              </div>
-              <p>Hey I want one!! That sounds so good! yum I need a cup or 3 right now! This project and frying my brain! This is driving me insane in the membrane!! Ahhhh I wanna go home but im already there...</p>
-            </div>
-            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
-          </div>
-        </div>
-
-        <div className='messages received'>
-          <div className="message-info">
-            <div className='message-structure'>
-              <div className="message-details">
-                <Button
-                  id='ChatBtn'
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={handleModalToggle}
-                >
-                X
-                </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-                <p>Sent-12:15pm</p>
-                <p>AustinBrew</p> 
-              </div>
-              <p>Hey I want one!! That sounds so good! yum I need a cup or 3 right now! This project and frying my brain! This is driving me insane in the membrane!! Ahhhh I wanna go home but im already there...</p>
-            </div>
-            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
-          </div>
-        </div>
-
-        <div className='messages received'>
-          <div className="message-info">
-            <div className='message-structure'>
-              <div className="message-details">
-                <Button
-                  id='ChatBtn'
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={handleModalToggle}
-                >
-                  X
-                </Button>
-                <Modal show={showModal} onHide={handleModalToggle}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Delete Message</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>Are you sure you want to delete message?</p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleModalToggle}>
-                      Close
-                    </Button>
-                    <Button variant="primary">Yes</Button>
-                  </Modal.Footer>
-                </Modal>
-                <p>Sent-12:15pm</p>
-                <p>AustinBrew</p> 
-              </div>
-              <p>Hey I want one!! That sounds so good! yum I need a cup or 3 right now! This project and frying my brain! This is driving me insane in the membrane!! Ahhhh I wanna go home but im already there...</p>
-            </div>
-            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
           </div>
         </div>
 
