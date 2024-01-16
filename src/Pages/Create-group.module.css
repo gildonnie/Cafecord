@@ -22,8 +22,8 @@ body {
 }
 .form {
     margin: 0px 15px;
-   
 }
+
 .form h2{
     margin-top: 30px;
     color: rgb(160, 76, 16);
@@ -47,5 +47,8 @@ body {
     padding: 10px 10px;
 }
 .groupMembersContainer{
-    padding: 35px 10px;
+    padding: 10px 0 0 20px;
+}
+.profileImgContainer {
+    object-fit:contain;
 }
