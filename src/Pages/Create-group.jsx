@@ -14,8 +14,12 @@ const CreateGroup = () => {
     const handleAddMember = () => {
         const memberId = uuidv4();
         const username = usernameRef.current.value;
+        if (!username){
+            return;
+        }
         usernameRef.current.value = '';
         // search for username in the database and get member object with the same username as below:
+        //  if username found
         const member = {
             id: memberId,
             username: username,
@@ -25,6 +29,8 @@ const CreateGroup = () => {
             messages: []
         };
         setMembers([...members, member]);
+        // else throw error, "User not found!".
+        
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -98,7 +104,7 @@ const CreateGroup = () => {
                             (<Row>
                                 <Col>
                                     <Card className={Styles.groupMembersContainer}>
-                                        <Stack direction="horizontal" gap={3} className="d-flex flex-wrap">
+                                        <Stack direction="horizontal" gap={3} className="w-100 d-flex">
                                             {renderMembers()}
                                         </Stack>
                                     </Card>
@@ -106,7 +112,7 @@ const CreateGroup = () => {
                             </Row>) : null}
                         <Row>
                             <Col xs={{ span: 10, offset: 1 }}>
-                                <Button className="btn" type="submit" variant='warning' id="new-group">Create Group</Button>
+                                <Button className="mt-5" type="submit" variant='warning' id="new-group">Create Group</Button>
                             </Col>
                         </Row>
                     </Form>

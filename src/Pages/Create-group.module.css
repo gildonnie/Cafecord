@@ -47,8 +47,10 @@ body {
     padding: 10px 10px;
 }
 .groupMembersContainer{
-    padding: 10px 0 0 20px;
+    padding: 10px 0 10px 20px;
+    overflow-x: scroll
 }
 .profileImgContainer {
     object-fit:contain;
 }
+
