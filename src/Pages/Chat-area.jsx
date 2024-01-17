@@ -39,7 +39,6 @@ function Chat() {
   const messageSubmit = async (e) => {
     e.preventDefault();
     if (messages === "") return;
-    
     try {
       await addDoc(msgRef, {
         text: messages,

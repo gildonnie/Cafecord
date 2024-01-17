@@ -27,15 +27,8 @@ function Login() {
     //sign in with google
     const signInWithGoogle = async () => {
       try {
-       const token = await signInWithPopup(auth, provider);
-        const user = token.user
-        // setCurrentUser(user.displayName);
-        // console.log(token)
-        if (user.displayName === '') {
-          navigate('/profile')
-        } else {
-          navigate('/chat')
-        } 
+        await signInWithPopup(auth, provider);
+        navigate('/chat')
       } catch (error) {
         console.error(error.message)
       }
