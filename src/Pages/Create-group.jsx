@@ -1,4 +1,4 @@
-import { useState, useId, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -8,7 +8,7 @@ import Image from '../assets/beautiful-coffee-image.png';
 import Stack from 'react-bootstrap/Stack';
 import profileImage from '../assets/profile-image.png';
 import { v4 as uuidv4 } from 'uuid';
-import { TiDeleteOutline } from "react-icons/ti";
+import { TiDelete } from "react-icons/ti";
 const CreateGroup = () => {
     const usernameRef = useRef(null);
     const [members, setMembers] = useState([]);
@@ -35,6 +35,12 @@ const CreateGroup = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        const result = /\S+/.test(e.currentTarget.name.value);
+        if (!result) {
+            e.stopPropagation();
+            alert("Group name is required!");
+            return;
+        }
         const newGroup = {
             id: uuidv4(),
             name: e.currentTarget.name.value,
@@ -42,28 +48,28 @@ const CreateGroup = () => {
             members: members,
             messages: []
         };
-        alert(`Group with name ${newGroup.name} created!
+        alert(`Created a group with the name ${newGroup.name}!
          
          ${JSON.stringify(newGroup)};
         `);
     }
     const handleDeleteMember = (id) => {
-       const updatedMembers = members.filter(member => member.id !== id);
-       setMembers(updatedMembers);
+        const updatedMembers = members.filter(member => member.id !== id);
+        setMembers(updatedMembers);
     }
     const renderMembers = () => {
         return members.map((member) => (
             <div key={member.id}>
-                <div className={Styles.profileImgContainer} onClick={()=> handleDeleteMember(member.id)}>
-                    <img className="rounded-circle" src={member.imageUrl} alt="profile image" width="70px" height="70px" />
-                    <TiDeleteOutline className={Styles.deleteIcon} size={30} fill={"tomato"} />
+                <div className={Styles.profileImgContainer} onClick={() => handleDeleteMember(member.id)}>
+                    <img className={'rounded-circle' + ' ' + Styles.profileImage} src={member.imageUrl} alt="profile image" width="65px" height="65px" />
+                    <TiDelete className={Styles.deleteIcon} size={34} />
                 </div>
                 <div className="fw-bold">{member.username}</div>
             </div>
         ))
     }
     return (
-        <Container fluid>
+        <Container className={Styles.body}>
             <Row className={Styles.container}>
                 <Col sm={12} md={6} lg={6} >
                     <Form id="new-group" onSubmit={handleSubmit} className={'d-md-flex flex-md-column justify-content-md-center h-100' + ' ' + Styles.form}>
@@ -76,7 +82,6 @@ const CreateGroup = () => {
                                     type="text"
                                     placeholder="Group Name"
                                     name="name"
-
                                 />
                             </Col>
                         </Row>
@@ -105,16 +110,15 @@ const CreateGroup = () => {
                                 <Button variant="warning" onClick={handleAddMember}>Add User</Button>
                             </Col>
                         </Row>
-                        {members.length ?
-                            (<Row>
-                                <Col>
-                                    <Card className={Styles.groupMembersContainer}>
-                                        <Stack direction="horizontal" gap={3} className="w-100 d-flex">
-                                            {renderMembers()}
-                                        </Stack>
-                                    </Card>
-                                </Col>
-                            </Row>) : null}
+                        <Row>
+                            <Col>
+                                <Card className={Styles.groupMembersContainer}>
+                                    <Stack direction="horizontal" gap={3} className="w-100 d-flex">
+                                        {renderMembers()}
+                                    </Stack>
+                                </Card>
+                            </Col>
+                        </Row>
                         <Row>
                             <Col xs={{ span: 10, offset: 1 }}>
                                 <Button className="mt-5" type="submit" variant='warning' id="new-group">Create Group</Button>
