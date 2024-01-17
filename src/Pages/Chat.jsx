@@ -1,29 +1,51 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import "../Styles/Chat.css"
-// import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-// import Toast from 'react-bootstrap/Toast';
 
 function Chat() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const handleOffcanvasToggle = () => setShowOffcanvas(!showOffcanvas);
 
-  // const [showModal, setShowModal] = useState(false);
-  // const handleModalToggle = () => setShowModal(!showModal);
+
 
 
   function deleteMessage(button) {
     // Get the parent message element
     var message = button.closest('.messages');
-
     // Confirm deletion (you can customize this part)
     if (confirm("Are you sure you want to delete this message?")) {
       // Remove the message element
       message.remove();
     }
   }
+
+  const [messages, setMessages] = useState([]);
+
+  function addMessage() {
+    // Get the message text from the input field
+    const messageText = document.querySelector('.text-input').value.trim();
+
+    // Only proceed if the message is not empty
+    if (messageText) {
+      // Create a new message object
+      const newMessage = {
+        id: Date.now(), // simple unique identifier
+        text: messageText,
+        sender: 'currentUser', // You might want to dynamically set this
+        timestamp: new Date().toLocaleTimeString(),
+      };
+
+      // Add the new message to the messages state
+      setMessages([...messages, newMessage]);
+
+      // Clear the input field
+      document.querySelector('.text-input').value = '';
+    }
+  }
+
+
   return (
     <div className='background'>
       <div className='SideMenu'>
@@ -58,26 +80,26 @@ function Chat() {
 
         <div className='messages sent'>
           <div className="message-info">
-          <Button
-                
-                className="btn btn-danger mobile-deleteBtn"
-                type="Button"
-                onClick={(e) => deleteMessage(e.target)}
-                // onClick={handleModalToggle}
-              >
-                x
-              </Button>
+            <Button
+
+              className="btn btn-danger mobile-deleteBtn"
+              type="Button"
+              onClick={(e) => deleteMessage(e.target)}
+
+            >
+              x
+            </Button>
             <img src='/Avatars/Beeo-o.jpg' alt="User Avatar" />
             <div className='message-structure'>
               <div className="message-details">
                 <p>Cafevibes209</p>
                 <p>Sent-12:03pm</p>
                 <Button
-                
+
                   className="btn btn-danger deleteBtn"
                   type="Button"
                   onClick={(e) => deleteMessage(e.target)}
-                  // onClick={handleModalToggle}
+
                 >
                   X
                 </Button>
@@ -89,26 +111,26 @@ function Chat() {
 
         <div className='messages received'>
           <div className="message-info">
-          <Button
-                
-                className="btn btn-danger mobile-deleteBtn"
-                type="Button"
-                onClick={(e) => deleteMessage(e.target)}
-                // onClick={handleModalToggle}
-              >
-                x
-              </Button>
+            <Button
+
+              className="btn btn-danger mobile-deleteBtn"
+              type="Button"
+              onClick={(e) => deleteMessage(e.target)}
+
+            >
+              x
+            </Button>
             <img src='/Avatars/cafeart.jpg' alt="User Avatar" />
             <div className='message-structure'>
-              <div className="message-details">    
+              <div className="message-details">
                 <p>AntoniaLatte</p>
                 <p>Sent-12:09pm</p>
                 <Button
-                
+
                   className="btn btn-danger deleteBtn"
                   type="Button"
                   onClick={(e) => deleteMessage(e.target)}
-                  // onClick={handleModalToggle}
+
                 >
                   X
                 </Button>
@@ -121,26 +143,26 @@ function Chat() {
 
         <div className='messages received'>
           <div className="message-info">
-          <Button
-                
-                className="btn btn-danger mobile-deleteBtn"
-                type="Button"
-                onClick={(e) => deleteMessage(e.target)}
-                // onClick={handleModalToggle}
-              >
-                x
-              </Button>
+            <Button
+
+              className="btn btn-danger mobile-deleteBtn"
+              type="Button"
+              onClick={(e) => deleteMessage(e.target)}
+
+            >
+              x
+            </Button>
             <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
             <div className='message-structure'>
               <div className="message-details">
                 <p>AustinBrew</p>
                 <p>Sent-12:15pm</p>
                 <Button
-                
+
                   className="btn btn-danger deleteBtn"
                   type="Button"
                   onClick={(e) => deleteMessage(e.target)}
-                  // onClick={handleModalToggle}
+
                 >
                   X
                 </Button>
@@ -150,7 +172,31 @@ function Chat() {
           </div>
         </div>
 
+        {/* Dynamic rendering of messages starts here */}
+        {messages.map((message) => (
+          <div className='messages sent' key={message.id}>
+            <div className="message-info">
+
+              <img src='/Avatars/Beeo-o.jpg' alt="User Avatar" /> {/* Update avatar as needed */}
+              <div className='message-structure'>
+                <div className="message-details">
+                  <p>{message.sender}</p> {/* Replace with actual sender name */}
+                  <p>Sent- {message.timestamp}</p>
+                  {/* Delete button and other message details */}
+                  <Button className="btn btn-danger deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>X</Button>
+                </div>
+                <p>{message.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+        {/* Dynamic rendering of messages ends here */}
+
+
         <textarea className='text-input' type='text' placeholder='Enter Message'></textarea>
+        <button className='sendBtn' onClick={(e) => addMessage(e.target)}>Send</button>
+
+
       </div>
     </div>
   );

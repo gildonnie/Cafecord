@@ -61,15 +61,16 @@
   background-color: #e0c686;
 }
 
-.side-btn{
-    width: 60px;
-    height: 60px;
-    font-size: 80%;
+.side-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 80%;
 }
 
 .messages {
   background-color: rgb(211, 211, 211);
   color: black;
+  min-width: 26%;
   max-width: 27%;
   overflow: hidden;
 }
@@ -91,10 +92,10 @@
 .message-structure {
   display: flex;
   flex-direction: column;
+  width: 100%; /* Ensure it takes full width of the message bubble */
 }
 
 .message-structure > p {
-  /* border: red solid; */
   flex-wrap: wrap;
 }
 .message-info {
@@ -104,6 +105,7 @@
 }
 
 .message-details {
+  min-width: 100%;
   display: flex;
   justify-content: space-between;
   /* flex-direction: row; */
@@ -125,8 +127,8 @@
   height: 15px;
 }
 
-
 textarea {
+  display: block;
   width: 100%;
   max-width: 85%; /* Adjust the percentage as needed */
   background-color: #7f7053;
@@ -143,11 +145,28 @@ textarea {
   bottom: 15px;
 }
 
-.mobile-deleteBtn{
-    display: none;
+.sendBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 75px;
 }
 
-@media (max-width: 768px) {
+.mobile-deleteBtn {
+  display: none;
+}
+
+@media (max-width: 1170px) {
+  .message-details {
+    font-size: 10px;
+  }
+
+  .deleteBtn {
+    font-size: 8px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 1025px) {
   .sent,
   .received {
     margin-left: 0;
@@ -161,13 +180,14 @@ textarea {
     flex-direction: column;
   }
 
-  .message-info, .message-details {
+  .message-info,
+  .message-details {
     align-items: center;
     flex-direction: column;
     height: auto;
   }
 
-  .mobile-deleteBtn{
+  .mobile-deleteBtn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -177,7 +197,12 @@ textarea {
     font-size: 10px;
   }
 
-  .deleteBtn{
+  .deleteBtn {
     display: none;
+  }
+
+  .ChatMainBody {
+    margin: 0;
+    border-radius: 0;
   }
 }
