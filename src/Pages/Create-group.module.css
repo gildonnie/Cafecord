@@ -52,5 +52,17 @@ body {
 }
 .profileImgContainer {
     object-fit:contain;
+    position: relative;
 }
+.deleteIcon{
+    position: absolute;
+    left: 40px;
+}
+.deleteIcon:hover{
+    fill: red;
+}
+.deleteIcon:active{
+    fill: grey;
+}
+
 

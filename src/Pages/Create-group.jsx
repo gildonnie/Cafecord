@@ -8,13 +8,14 @@ import Image from '../assets/beautiful-coffee-image.png';
 import Stack from 'react-bootstrap/Stack';
 import profileImage from '../assets/profile-image.png';
 import { v4 as uuidv4 } from 'uuid';
+import { TiDeleteOutline } from "react-icons/ti";
 const CreateGroup = () => {
     const usernameRef = useRef(null);
     const [members, setMembers] = useState([]);
     const handleAddMember = () => {
         const memberId = uuidv4();
         const username = usernameRef.current.value;
-        if (!username){
+        if (!username) {
             return;
         }
         usernameRef.current.value = '';
@@ -30,7 +31,7 @@ const CreateGroup = () => {
         };
         setMembers([...members, member]);
         // else throw error, "User not found!".
-        
+
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -46,12 +47,16 @@ const CreateGroup = () => {
          ${JSON.stringify(newGroup)};
         `);
     }
-
+    const handleDeleteMember = (id) => {
+       const updatedMembers = members.filter(member => member.id !== id);
+       setMembers(updatedMembers);
+    }
     const renderMembers = () => {
         return members.map((member) => (
             <div key={member.id}>
-                <div className={Styles.profileImgContainer}>
+                <div className={Styles.profileImgContainer} onClick={()=> handleDeleteMember(member.id)}>
                     <img className="rounded-circle" src={member.imageUrl} alt="profile image" width="70px" height="70px" />
+                    <TiDeleteOutline className={Styles.deleteIcon} size={30} fill={"tomato"} />
                 </div>
                 <div className="fw-bold">{member.username}</div>
             </div>
