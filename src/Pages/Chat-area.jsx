@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { db, auth } from '../firebase.js';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, serverTimestamp, addDoc, onSnapshot, query, where, orderBy } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 import Button from '../Components/Button';
 
 function Chat() {
@@ -10,6 +11,7 @@ function Chat() {
   const [channel, setChannel] = useState("")
   const [messageCount, setMessageCount] = useState([])
   const msgRef = collection(db, "messages")
+  const navigate = useNavigate();
   
 
   const  deleteMsg = (event, msgId) => {
@@ -74,21 +76,22 @@ function Chat() {
     return () => unsubscribe();
   }, [channel, msgRef])
 
-
-
-
-
-
+  const logout = async () => {
+    await signOut(auth)
+    navigate('/')
+    
+   }
 
   return (
     <>
+      <button onClick={logout}>logout</button>
       <div>
         <form>
           <input type="text"
             onChange={(e) => setMessages(e.target.value)}
             value={messages}
           />
-          <button onClick={messageSubmit} type='submit'>enter</button>
+          <button onClick={messageSubmit} type="submit">enter</button>
         </form>
       </div>
       <Button 

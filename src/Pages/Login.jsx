@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react';
 import { auth, provider } from '../firebase.js';
 import { signInWithPopup,  signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import Signup from '../Pages/Signup.jsx'
+import { useNavigate, Link } from 'react-router-dom';
 
 
 function Login() {
@@ -18,9 +17,7 @@ function Login() {
     const singInWIthEmail = async (e) => {
       e.preventDefault();
       try {
-        const token = await signInWithEmailAndPassword(auth, email, password)
-        const user = token.user
-        console.log(user)
+        await signInWithEmailAndPassword(auth, email, password)
         navigate('/chat')
       } catch (error) {
         console.error(error)
@@ -30,11 +27,15 @@ function Login() {
     //sign in with google
     const signInWithGoogle = async () => {
       try {
-        const token = await signInWithPopup(auth, provider);
+       const token = await signInWithPopup(auth, provider);
         const user = token.user
-        setCurrentUser(user.displayName);
-        console.log(token)
-        navigate('/profile')
+        // setCurrentUser(user.displayName);
+        // console.log(token)
+        if (user.displayName === '') {
+          navigate('/profile')
+        } else {
+          navigate('/chat')
+        } 
       } catch (error) {
         console.error(error.message)
       }
@@ -43,39 +44,18 @@ function Login() {
     useEffect(() => {
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          setCurrentUser(user.displayName)
+          console.log(user.displayName)
         }
       })
     }, [])
 
-   const logout = async () => {
-    signOut(auth)
-    setCurrentUser(null)
-   }
    
-
-  
-
- 
-
-  // signInWithEmailAndPassword(auth, email, password)
-  // .then((userCredential) => {
-  //   // Signed in 
-  //   const user = userCredential.user;
-  //   // ...
-  // })
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  // });
-
 
   return (
     <>
       <div>login</div>
       <button onClick={signInWithGoogle}>Google</button>
-      <div>welcome {currentUser}</div>
-      <button onClick={logout}>logout</button>
+      
 
       <div>
         <form>
@@ -84,7 +64,9 @@ function Login() {
           <button onClick={singInWIthEmail} type='submit'>submit</button>
         </form>
       </div>
-      <Signup />
+      <div>
+        <Link to="/signup">Signup</Link>
+      </div>
     </>
   )
 }

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { auth } from '../firebase.js';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 function Login() {
@@ -35,11 +35,12 @@ function Login() {
   return (
     <div>
       <form>
-        <input type="email" placeholder='email' value={email} onChange={(e) => setEmail(e.target.value)}/>
-        <input type="password" placeholder='pas' value={password} onChange={(e) => setPassword(e.target.value)}/>
-        <input type="password" placeholder='pass2' value={rePassword} onChange={(e) => setRePassword(e.target.value)}/>
-        <button onClick={handleSignup} type='submit'>submit</button>
+        <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+        <input type="password" placeholder="pas" value={password} onChange={(e) => setPassword(e.target.value)}/>
+        <input type="password" placeholder="pass2" value={rePassword} onChange={(e) => setRePassword(e.target.value)}/>
+        <button onClick={handleSignup} type="submit">submit</button>
       </form>
+      <Link to="/">login</Link>
     </div>
   )
 }
