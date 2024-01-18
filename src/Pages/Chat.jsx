@@ -2,11 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import "../Styles/Chat.css"
 import Button from 'react-bootstrap/Button'
-import Offcanvas from 'react-bootstrap/Offcanvas'
+// import Offcanvas from 'react-bootstrap/Offcanvas'
 
 function Chat() {
-  const [showOffcanvas, setShowOffcanvas] = useState(false);
-  const handleOffcanvasToggle = () => setShowOffcanvas(!showOffcanvas);
+  // const [showOffcanvas, setShowOffcanvas] = useState(false);
+  // const handleOffcanvasToggle = () => setShowOffcanvas(!showOffcanvas);
 
 
 
@@ -66,26 +66,9 @@ function Chat() {
     <div className='background'>
       <div className='SideMenu'>
         <Button
-          className="btn btn-primary side-btn"
-          type="Button"
-          onClick={handleOffcanvasToggle}
-        >
-          <p> Edit Profile Button</p>
+          className="btn btn-primary side-btn" type="Button">
+          <Link to={'/EditProfile'}>Edit Profile</Link>
         </Button>
-
-        <Offcanvas
-          show={showOffcanvas}
-          onHide={() => setShowOffcanvas(false)}
-          placement="end"
-          scroll={true}
-        >
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Edit Profile</Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <p>Choose new avatar.</p>
-          </Offcanvas.Body>
-        </Offcanvas>
         <Link to='/Login'><Button className="side-btn" variant="info"><p>Logout</p></Button>{' '}</Link>
       </div>
 
@@ -110,7 +93,7 @@ function Chat() {
             <div className='message-structure'>
               <div className="message-details">
                 <p>Cafevibes209</p>
-                <p>Sent- 12:03:09 PM</p>
+                <p className='timestamp'>Sent 12:03:09 PM</p>
                 <Button
 
                   className="btn btn-danger deleteBtn"
@@ -141,13 +124,11 @@ function Chat() {
             <div className='message-structure'>
               <div className="message-details">
                 <p>AntoniaLatte</p>
-                <p>Sent- 12:09:43 PM</p>
+                <p className='timestamp'>Sent 12:09:43 PM</p>
                 <Button
-
                   className="btn btn-danger deleteBtn"
                   type="Button"
                   onClick={(e) => deleteMessage(e.target)}
-
                 >
                   X
                 </Button>
@@ -173,7 +154,7 @@ function Chat() {
             <div className='message-structure'>
               <div className="message-details">
                 <p>AustinBrew</p>
-                <p>Sent- 12:15:04 PM</p>
+                <p className='timestamp'>Sent 12:15:04 PM</p>
                 <Button
 
                   className="btn btn-danger deleteBtn"
@@ -207,7 +188,7 @@ function Chat() {
               <div className='message-structure'>
                 <div className="message-details">
                   <p>CafeVibes209{/*message.sender*/}</p> {/* Replace with actual sender name */}
-                  <p>Sent- {message.timestamp}</p>
+                  <p className='timestamp'>Sent {message.timestamp}</p>
                   {/* Delete button and other message details */}
                   <Button className="btn btn-danger deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>X</Button>
                 </div>
