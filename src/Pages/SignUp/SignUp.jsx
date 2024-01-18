@@ -87,7 +87,7 @@ export default function SignUp() {
             <h1 className="mb-5">Let's get started,</h1>
             <label htmlFor="signupEmail"></label>
             <input id='signupEmail' className={`${styles['email-input']}`} onChange={e => {handleEmail(e.target.value)}} type="text" name="signupEmail" placeholder="email" required></input>
-            <div className={`${emailValid ? 'd-none' : `d-block invalid-email ${styles['invalid-email']}`}`}>Check email format</div>
+            <div className={`${emailValid ? 'd-none' : `d-block mb-3 ${styles['invalid-email']}`}`}>Check email format</div>
             <div className='mb-3 position-relative'>
               <label htmlFor="signupPassword"></label>
               <input id='signupPassword' className={`${styles['password-input']} position-relative`} onChange={e => {handlePassword(e.target.value), togglePasswordVisibility}} type={showPassword ? 'text' : 'password'} name="signupPassword" placeholder="password" required>
@@ -104,7 +104,7 @@ export default function SignUp() {
                 {showConfirmPassword ? <i className="bi bi-eye-fill"></i> : <i className="bi bi-eye-slash"></i>}
               </span>
             </div>
-            <p className={`${password === confirmPassword ? 'd-none' : `d-block invalid-email ${styles['invalid-email']}`}`}>Passwords don't match</p>
+            <p className={`${password === confirmPassword ? 'd-none' : `d-block ${styles['invalid-email']}`}`}>Passwords don't match</p>
             <button className={`${styles['login-btn']} w-100`} onClick={handleSignup}>Create Account</button>
             <p className={`${styles.divider}`} >or continue with</p>
             <button type='button' className={`${styles['google-btn']} d-flex justify-content-center gap-2 align-items-center`} onClick={signInWithGoogle}>
