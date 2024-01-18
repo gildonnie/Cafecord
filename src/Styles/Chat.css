@@ -38,13 +38,13 @@
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 0px;
-  display: flex;
+  display:flex;
   align-items: center;
-  flex-direction: column;
   gap: 20px;
   color: white;
   box-shadow: black 5px 5px 10px;
-  overflow: hidden;
+  overflow:hidden;
+  flex-direction: column;
   padding-bottom: 100px;
   padding-top: 10px;
 }
@@ -71,7 +71,7 @@
   background-color: rgb(211, 211, 211);
   color: black;
   min-width: 26%;
-  max-width: 27%;
+  max-width: 26%;
   overflow: hidden;
 }
 
@@ -147,8 +147,9 @@ textarea {
 
 .sendBtn {
   position: fixed;
-  bottom: 30px;
+  bottom: 35px;
   right: 75px;
+  border:none;
 }
 
 .mobile-deleteBtn {

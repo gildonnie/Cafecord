@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef} from 'react';
 import { Link } from "react-router-dom";
 import "../Styles/Chat.css"
 import Button from 'react-bootstrap/Button'
@@ -42,8 +42,24 @@ function Chat() {
 
       // Clear the input field
       document.querySelector('.text-input').value = '';
+
     }
   }
+
+  function handleKeyPress(e) {
+    // Check if the Enter key is pressed and not the Shift key
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault(); // Prevents the default action of Enter key (new line)
+      addMessage(); // Calls the function to add a message
+    }
+  }
+
+  const messagesEndRef = useRef(null);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+
 
 
   return (
@@ -72,6 +88,7 @@ function Chat() {
         </Offcanvas>
         <Link to='/Login'><Button className="side-btn" variant="info"><p>Logout</p></Button>{' '}</Link>
       </div>
+
       <div className='ChatMainBody'>
         <div className='chat-title'>
           <img className='logo' src="/assets/cafeLogo2.jpg" />
@@ -93,7 +110,7 @@ function Chat() {
             <div className='message-structure'>
               <div className="message-details">
                 <p>Cafevibes209</p>
-                <p>Sent-12:03pm</p>
+                <p>Sent- 12:03:09 PM</p>
                 <Button
 
                   className="btn btn-danger deleteBtn"
@@ -124,7 +141,7 @@ function Chat() {
             <div className='message-structure'>
               <div className="message-details">
                 <p>AntoniaLatte</p>
-                <p>Sent-12:09pm</p>
+                <p>Sent- 12:09:43 PM</p>
                 <Button
 
                   className="btn btn-danger deleteBtn"
@@ -156,7 +173,7 @@ function Chat() {
             <div className='message-structure'>
               <div className="message-details">
                 <p>AustinBrew</p>
-                <p>Sent-12:15pm</p>
+                <p>Sent- 12:15:04 PM</p>
                 <Button
 
                   className="btn btn-danger deleteBtn"
@@ -180,7 +197,7 @@ function Chat() {
               <img src='/Avatars/Beeo-o.jpg' alt="User Avatar" /> {/* Update avatar as needed */}
               <div className='message-structure'>
                 <div className="message-details">
-                  <p>{message.sender}</p> {/* Replace with actual sender name */}
+                  <p>CafeVibes209{/*message.sender*/}</p> {/* Replace with actual sender name */}
                   <p>Sent- {message.timestamp}</p>
                   {/* Delete button and other message details */}
                   <Button className="btn btn-danger deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>X</Button>
@@ -188,14 +205,15 @@ function Chat() {
                 <p>{message.text}</p>
               </div>
             </div>
+            <div ref={messagesEndRef} /> {/* Empty div for scrolling */}
           </div>
         ))}
         {/* Dynamic rendering of messages ends here */}
 
-
-        <textarea className='text-input' type='text' placeholder='Enter Message'></textarea>
-        <button className='sendBtn' onClick={(e) => addMessage(e.target)}>Send</button>
-
+        
+          <textarea className='text-input' type='text' placeholder='Enter Message' onKeyDown={handleKeyPress}></textarea>
+          <button className='sendBtn' onClick={(e) => addMessage(e.target)}>Send</button>
+        
 
       </div>
     </div>
