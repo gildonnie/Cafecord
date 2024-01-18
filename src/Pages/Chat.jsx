@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import "../Styles/Chat.css"
 import Button from 'react-bootstrap/Button'
@@ -193,6 +193,15 @@ function Chat() {
         {messages.map((message) => (
           <div className='messages sent' key={message.id}>
             <div className="message-info">
+              <Button
+
+                className="btn btn-danger mobile-deleteBtn"
+                type="Button"
+                onClick={(e) => deleteMessage(e.target)}
+
+              >
+                x
+              </Button>
 
               <img src='/Avatars/Beeo-o.jpg' alt="User Avatar" /> {/* Update avatar as needed */}
               <div className='message-structure'>
@@ -210,10 +219,10 @@ function Chat() {
         ))}
         {/* Dynamic rendering of messages ends here */}
 
-        
-          <textarea className='text-input' type='text' placeholder='Enter Message' onKeyDown={handleKeyPress}></textarea>
-          <button className='sendBtn' onClick={(e) => addMessage(e.target)}>Send</button>
-        
+
+        <textarea className='text-input' type='text' placeholder='Enter Message' onKeyDown={handleKeyPress}></textarea>
+        <button className='sendBtn' onClick={(e) => addMessage(e.target)}>Send</button>
+
 
       </div>
     </div>

@@ -70,23 +70,23 @@
 .messages {
   background-color: rgb(211, 211, 211);
   color: black;
-  min-width: 26%;
-  max-width: 26%;
+  min-width: 42%;
+  max-width: 42%;
   overflow: hidden;
 }
 
 .sent {
-  margin-left: 60%;
+  margin-left: 50%;
 }
 
 .received {
-  margin-right: 60%;
+  margin-right: 50%;
 }
 
 .sent,
 .received {
   border-radius: 10px 10px 10px 10px;
-  padding: 5px;
+  padding: 10px;
 }
 
 .message-structure {
@@ -101,13 +101,14 @@
 .message-info {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 15px;
 }
 
 .message-details {
   min-width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content:space-around;
+  /* gap: 5px; */
   /* flex-direction: row; */
   font-size: 12px;
   color: gray;
@@ -119,6 +120,10 @@
 }
 
 .deleteBtn {
+  background-color: red;
+  color: white;
+  border-radius: 4px;
+  border: none;
   font-size: 10px;
   display: flex;
   align-items: center;
@@ -142,39 +147,39 @@ textarea {
 
 .text-input {
   position: fixed;
-  bottom: 15px;
+  bottom: 5px;
 }
 
 .sendBtn {
   position: fixed;
-  bottom: 35px;
+  bottom: 30px;
   right: 75px;
   border:none;
+}
+
+.sendBtn:hover {
+  background-color: rgb(205, 205, 205);
 }
 
 .mobile-deleteBtn {
   display: none;
 }
 
-@media (max-width: 1170px) {
+
+/* @media (max-width: 990px) {
   .message-details {
     font-size: 10px;
   }
+} */
 
-  .deleteBtn {
-    font-size: 8px;
-    height: 10px;
-  }
-}
-
-@media (max-width: 1025px) {
+@media (max-width: 769px) {
   .sent,
   .received {
     margin-left: 0;
     margin-right: 0;
   }
   .messages {
-    min-width: 50%;
+    min-width: 60%;
     margin-left: 5%;
     margin-right: 5%;
     overflow: auto; /* Added to allow scrolling within messages */
@@ -205,5 +210,11 @@ textarea {
   .ChatMainBody {
     margin: 0;
     border-radius: 0;
+  }
+
+  .sendBtn {
+    bottom: 35px;
+    right: 10%;
+    border:none;
   }
 }
