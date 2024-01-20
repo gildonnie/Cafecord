@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Login from './Pages/Login';
 import Chat from './Pages/Chat';
+import EditProfile from './Pages/EditProfile';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route index element={<Login />} />
       <Route path='/Login' element={<Login />} />
       <Route path="/Chat" element={<Chat />} />
+      <Route path='/EditProfile' element={<EditProfile />}/>
     </Routes>
   )
 }

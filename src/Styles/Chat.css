@@ -31,8 +31,8 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  /* background-size: cover; */
-  background-size: 1700px 1000px;
+  background-size: cover;
+  /* background-size: 1700px 1000px; */
   border-radius: 20px;
   margin-top: 20px;
   margin-left: 20px;
@@ -61,17 +61,23 @@
 }
 
 .side-btn {
+  color: black;
   width: 60px;
   height: 60px;
   font-size: 80%;
 }
+
 
 .messages {
   background-color: rgb(211, 211, 211);
   color: black;
   min-width: 42%;
   max-width: 42%;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+.messages:hover{
+  background-color: rgb(180, 180, 180);
 }
 
 .sent {
@@ -89,14 +95,18 @@
 }
 
 .message-structure {
+  min-width: 80%;
+  max-width: 80%;
   display: flex;
   flex-direction: column;
-  width: 100%; /* Ensure it takes full width of the message bubble */
 }
 
 .message-structure > p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   flex-wrap: wrap;
 }
+
 .message-info {
   display: flex;
   align-items: flex-start;
@@ -104,7 +114,6 @@
 }
 
 .message-details {
-  min-width: 100%;
   display: flex;
   justify-content:space-between;
   font-size: 12px;
@@ -135,6 +144,7 @@
   justify-content: center;
   width: 10px;
   height: 15px;
+  /* margin-left: auto; */
 }
 
 
@@ -172,11 +182,13 @@ textarea {
 }
 
 
-/* @media (max-width: 990px) {
-  .message-details {
-    font-size: 10px;
+@media (max-width: 1135px) {
+  .message-structure{
+    min-width:70%;
   }
-} */
+  
+
+}
 
 @media (max-width: 775px) {
   .sent,
@@ -227,4 +239,11 @@ textarea {
 
 Link{
   color: white;
+}
+
+@media (min-width:2055px) {
+  .sendBtn {
+    right: 100px;
+  }
+  
 }

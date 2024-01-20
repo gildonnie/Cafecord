@@ -1,9 +1,35 @@
-.epBackground{
+.profileBackground{
     height: 100vh;
     width: 100%;
-    background-color: #e0c686;
+    background-color: #99723a;
+    display: flex;
 }
 
-Link{
+.profileLinks{
     color: black;
+    font-size: 25px;
+}
+
+.epSideMenu{
+    display: flex;
+    justify-content: center;
+    background-color: #e0c686;
+    height: 100%;
+    width: 10%;
+}
+
+.avatarCard{
+    font-size: 25px;
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border: blue solid;
+}
+
+img{
+    border-radius: 150px;
+    width: 250px;
 }

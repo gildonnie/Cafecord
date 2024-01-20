@@ -64,11 +64,11 @@ function Chat() {
 
   return (
     <div className='background'>
+
       <div className='SideMenu'>
-        <Button
-          className="btn btn-primary side-btn" type="Button">
-          <Link to={'/EditProfile'}>Edit Profile</Link>
-        </Button>
+        
+          <Link to={'/EditProfile'}><Button className="btn btn-primary side-btn" type="Button">Edit Profile</Button></Link>
+        
         <Link to='/Login'><Button className="side-btn" variant="info"><p>Logout</p></Button>{' '}</Link>
       </div>
 
@@ -80,13 +80,7 @@ function Chat() {
 
         <div className='messages sent'>
           <div className="message-info">
-            <Button
-
-              className="btn btn-danger mobile-deleteBtn"
-              type="Button"
-              onClick={(e) => deleteMessage(e.target)}
-
-            >
+            <Button className="btn btn-danger mobile-deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>
               x
             </Button>
             <img src='/Avatars/Beeo-o.jpg' alt="User Avatar" />
@@ -94,13 +88,7 @@ function Chat() {
               <div className="message-details">
                 <p>Cafevibes209</p>
                 <p className='timestamp'>Sent 12:03:09 PM</p>
-                <Button
-
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={(e) => deleteMessage(e.target)}
-
-                >
+                <Button className="btn btn-danger deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>
                   X
                 </Button>
               </div>
@@ -111,13 +99,7 @@ function Chat() {
 
         <div className='messages received'>
           <div className="message-info">
-            <Button
-
-              className="btn btn-danger mobile-deleteBtn"
-              type="Button"
-              onClick={(e) => deleteMessage(e.target)}
-
-            >
+            <Button className="btn btn-danger mobile-deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>
               x
             </Button>
             <img src='/Avatars/cafeart.jpg' alt="User Avatar" />
@@ -125,11 +107,7 @@ function Chat() {
               <div className="message-details">
                 <p>AntoniaLatte</p>
                 <p className='timestamp'>Sent 12:09:43 PM</p>
-                <Button
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={(e) => deleteMessage(e.target)}
-                >
+                <Button className="btn btn-danger deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>
                   X
                 </Button>
               </div>
