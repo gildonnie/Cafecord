@@ -49,6 +49,12 @@
   border: none;
   
 }
+
+.button:hover {
+  background-color: #5c5b3a;
+  color: #808080;
+}
+
 .text {
   color: white;
 }
