@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import '../Styles/EditProfile.css';
+import styles from '../Styles/EditProfile.module.css';
 
  function EditProfile() {
 
 
     return(
-        <div className="profileBackground">
-            <div className="epSideMenu"><Link className="profileLinks" to={'/Chat'}>Chat</Link></div>
-            <div className="avatarCard">
+        <div className={styles.profileBackground}>
+            <div className={styles.epSideMenu}><Link className={styles.profileLinks} to={'/Chat'}>Chat</Link></div>
+            <div className={styles.avatarCard}>
                 <p>Select New Avatar</p>
                 <img src="/Avatars/coffeeBrewers.jpg" alt="Coffee Brewer" />
                 <img src="/Avatars/coffeeBrewers2.jpg" alt="Coffee Brewer" />
