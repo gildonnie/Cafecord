@@ -5,6 +5,12 @@
   text-align: center;
 } */
 
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .h-screen {
   height: 100vh;
 }
