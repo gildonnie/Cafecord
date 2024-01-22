@@ -1,7 +1,7 @@
-import styles from './Login.module.css'
+import styles from '../Styles/Login.module.css'
 import { useState, useEffect } from 'react'
 
-import { auth, provider } from '../../firebase.js';
+import { auth, provider } from '../firebase.js';
 import { signInWithPopup,  signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate, Link } from 'react-router-dom';
 

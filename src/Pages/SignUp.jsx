@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './SignUp.module.css'
+import styles from '../Styles/SignUp.module.css'
 import { useState, useRef } from 'react'
-import { auth, provider } from '../../firebase'
+import { auth, provider } from '../firebase'
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { useNavigate, Link } from 'react-router-dom';
 

@@ -1,9 +1,9 @@
 // import { useState } from 'react'
 import './App.css'
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Login from './Pages/Login/Login';
+import Login from './Pages/Login';
 import Chat from './Pages/Chat-area';
-import SignUp from './Pages/SignUp/SignUp';
+import SignUp from './Pages/SignUp';
 
 
 function App() {
