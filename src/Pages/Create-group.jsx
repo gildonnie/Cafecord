@@ -3,12 +3,13 @@ import { Container, Row, Col } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Styles from './Create-group.module.css';
+import Styles from '../Styles/Create-group.module.css';
 import Image from '../assets/beautiful-coffee-image.png';
 import Stack from 'react-bootstrap/Stack';
 import profileImage from '../assets/profile-image.png';
 import { v4 as uuidv4 } from 'uuid';
 import { TiDelete } from "react-icons/ti";
+
 const CreateGroup = () => {
     const usernameRef = useRef(null);
     const [members, setMembers] = useState([]);
