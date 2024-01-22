@@ -2,13 +2,12 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import { auth, provider } from '../firebase.js';
-import { signInWithPopup,  signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
+import { signInWithPopup,  signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate, Link } from 'react-router-dom';
 
 
 function Login() {
 
-  const [currentUser, setCurrentUser] = useState()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
     const navigate = useNavigate();
@@ -18,7 +17,7 @@ function Login() {
       e.preventDefault();
       try {
         await signInWithEmailAndPassword(auth, email, password)
-        navigate('/chat')
+        navigate('/main')
       } catch (error) {
         console.error(error)
       }
@@ -28,7 +27,7 @@ function Login() {
     const signInWithGoogle = async () => {
       try {
         await signInWithPopup(auth, provider);
-        navigate('/chat')
+        navigate('/main')
       } catch (error) {
         console.error(error.message)
       }

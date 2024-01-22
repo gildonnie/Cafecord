@@ -1,18 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { db, auth } from '../firebase.js';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { collection, serverTimestamp, addDoc, onSnapshot, query, where, orderBy } from 'firebase/firestore';
-import { useNavigate } from 'react-router-dom';
 import Button from '../Components/Button';
 
-function Chat() {
+function Chat(props) {
   const [messages, setMessages] = useState("")
-  const [channel, setChannel] = useState("")
-  const [messageCount, setMessageCount] = useState([])
-  const msgRef = collection(db, "messages")
-  const navigate = useNavigate();
-  
+  const [messageCount, setMessageCount] = useState([]) 
+  const msgRef = collection(db, "messages");
+
+  const { channel } = props;
 
   const  deleteMsg = (event, msgId) => {
     event.stopPropagation()
@@ -28,12 +26,6 @@ function Chat() {
       }
     });
   }, [])
-
-  //setting channel value on click 
-    const handleChannel = (value) => {
-      setChannel(value)
-      console.log(channel)
-    }
 
   //submitting a document as an object to the firestore collection msgRef if message is blank it wont submit 
   const messageSubmit = async (e) => {
@@ -62,28 +54,20 @@ function Chat() {
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = []
       snapshot.forEach((doc) => {
-        const timestamp = doc.data().timestamp;
-        // console.log("Timestamp:", timestamp);
         messages.push({ ...doc.data(), id: doc.id })
       })
-      // console.log("Messages:", messages);
       setMessageCount(messages)
     }, (error) => {
       console.error("Error fetching messages:", error);
     });
 
     return () => unsubscribe();
-  }, [channel, msgRef])
+  }, [msgRef, channel])
 
-  const logout = async () => {
-    await signOut(auth)
-    navigate('/')
-    
-   }
+
 
   return (
     <>
-      <button onClick={logout}>logout</button>
       <div>
         <form>
           <input type="text"
@@ -96,8 +80,6 @@ function Chat() {
       <Button 
         deleteMsg={deleteMsg}
       />
-      <button onClick={() => handleChannel("1")}>channel 1</button>
-      <button onClick={() => handleChannel("2")}>channel 2</button>
       {messageCount.map((message) => <h1 key={message.id}>{message.text}</h1>)}
     </>
   )

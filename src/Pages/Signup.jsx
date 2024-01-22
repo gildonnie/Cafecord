@@ -13,6 +13,8 @@ function Login() {
 
   const navigate = useNavigate();
 
+
+  //create user is taking in email and password as parameters then navigates to chat where the user can edit their profile
   const handleSignup = async (e) => {
     e.preventDefault();
     console.log(email)
@@ -21,7 +23,7 @@ function Login() {
         const userCreds = createUserWithEmailAndPassword(auth, email, password)
         const user = userCreds.user;
         console.log(user)
-        navigate('/profile')
+        navigate('/main')
       } catch (error) {
         console.error(error);
       }
