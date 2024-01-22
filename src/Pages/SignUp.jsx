@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from '../Styles/SignUp.module.css'
-import { useState, useRef } from 'react'
-import { auth, provider } from '../firebase'
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { auth, provider } from '../firebase.js'
+import { createUserWithEmailAndPassword, signInWithPopup, onAuthStateChanged, } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
 
@@ -77,6 +77,15 @@ export default function SignUp() {
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+  
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user.displayName)
+        navigate('/chat')
+      }
+    })
+  }, [])
 
   return (
     <div className='container-fluid h-screen'>

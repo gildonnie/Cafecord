@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 import { auth, provider } from '../firebase.js';
 import { signInWithPopup,  signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   
@@ -37,6 +37,7 @@ export default function Login() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user.displayName)
+        navigate('/chat')
       }
     })
   }, [])
