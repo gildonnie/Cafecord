@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+
 import styles from '../Styles/Login.module.css'
 import { useState, useEffect } from 'react'
-
 import { auth, provider } from '../firebase.js';
 import { signInWithPopup,  signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate, Link } from 'react-router-dom';
