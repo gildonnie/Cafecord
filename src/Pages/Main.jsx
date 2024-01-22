@@ -4,7 +4,7 @@ import { db, auth } from '../firebase.js';
 import {  signOut } from 'firebase/auth';
 import { collection, serverTimestamp, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import Chat from './Chat-area.jsx';
+import Chat from '../Components/Chat-area.jsx';
 
 
 function Channels() {
@@ -15,7 +15,7 @@ function Channels() {
   const navigate = useNavigate();
 
 
-   //submitting a document as an object to the firestore collection msgRef if message is blank it wont submit 
+   //submitting a document as an object to the firestore collection channelRef 
    const channelSubmit = async (e) => {
     e.preventDefault();
     if (title === "") return;
@@ -33,7 +33,7 @@ function Channels() {
 
 
 
-//Grabbing real time messages using onsnapshot depending on the channel making a query for it
+//Using on snapshot every time channelRef gets updated(New Channel gets created) the the channelObj which contains all the channels
   useEffect(() => {
     const queryMessages = query(channelRef,  orderBy("time", "asc"));
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -49,12 +49,13 @@ function Channels() {
     return () => unsubscribe();
   }, [channelRef])
 
+  //onclick the channel id gets set to channel state which we pass to the chat area to grab only those messages that are in the room by comparing the ids of the messages to the channel id
   const handleChannel = (value) => {
     setChannel(value)
     console.log(channel)
   }
 
-  
+  //uses singout function from firebase to signout user 
   const logout = async () => {
     await signOut(auth)
     navigate('/')

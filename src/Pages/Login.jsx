@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import { auth, provider } from '../firebase.js';
-import { signInWithPopup,  signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { signInWithPopup,  signInWithEmailAndPassword, onAuthStateChanged0 } from 'firebase/auth';
 import { useNavigate, Link } from 'react-router-dom';
 
 
