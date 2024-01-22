@@ -8,7 +8,7 @@ import EditProfile from './Pages/EditProfile';
 import SignUp from './Pages/SignUp';
 import Profile from './Pages/Profile'
 import Main from './Pages/Main.jsx'
-
+import CreateGroup from './Pages/Create-group';
 
 function App() {
   const location = useLocation();
@@ -21,6 +21,7 @@ function App() {
       <Route path='/EditProfile' element={<EditProfile />}/>
       <Route path="/profile" element={<Profile />} />
       <Route path="/main" element={<Main />} />
+      <Route path="/group-form" element={<CreateGroup/>}/>
     </Routes> 
   )
 }
