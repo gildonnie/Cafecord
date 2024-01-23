@@ -1,0 +1,81 @@
+
+.login-box-container {
+  background-color: #7F7053;
+  box-sizing: border-box;
+  min-height: 100vh;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.login-container {
+  background-color: #523D06;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%; 
+}
+
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #ece5e1;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #808080; 
+  color: #ebeaea;
+  height: 30px;
+  width: 250px;
+  padding: 10px 10px;
+  margin-top: 20px;
+  border-radius: 20px; 
+  cursor: pointer;
+  border: none;
+  
+}
+
+.button:hover {
+  background-color: #5c5b3a;
+  color: #808080;
+}
+
+.text {
+  color: white;
+}
+
+/* style for image */
+.img-container {
+  overflow: hidden;
+}
+
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.accounttext {
+  color:white;
+}
