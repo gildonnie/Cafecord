@@ -98,6 +98,14 @@
   .login-btn:active {
     background-color: #ad4800;
   }
+
+  .disabled-login-btn {
+    cursor: not-allowed;
+  }
+
+  .disabled-login-btn:hover {
+    background-color: #ED6300;
+  }
   
   .password-visibility {
     position: absolute;

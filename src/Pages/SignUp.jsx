@@ -12,24 +12,43 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [emailValid, setEmailValid] = useState(true);
+  const [emailValid, setEmailValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
+  const [formErrors, setFormErrors] = useState([])
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    console.log(email)
-    if(password === confirmPassword) {
+    setFormErrors([])
+    if(email === ''){
+      setFormErrors((prevErrors) => [...prevErrors, 'Email can\'t be blank']);
+    }
+
+    if(password === '' || confirmPassword === ''){
+      setFormErrors((prevErrors) => [...prevErrors, 'Password can\'t be blank']);
+    } 
+
+    if(email.length > 0 && !emailValid){
+      setFormErrors((prevErrors) => [...prevErrors, 'Email is invalid']);
+    }
+
+    if(password !== confirmPassword){
+      setFormErrors((prevErrors) => [...prevErrors, 'Passwords don\'t match']);
+    }
+
+    if(email.length > 0 && (password.length > 0 && confirmPassword.length > 0) && emailValid && password === confirmPassword) {
       try {
-        const userCreds = createUserWithEmailAndPassword(auth, email, password)
+        setIsLoading(true)
+        const userCreds = await createUserWithEmailAndPassword(auth, email, password)
         const user = userCreds.user;
         console.log(user)
         navigate('/profile')
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false)
       }
-    } else {
-      console.log('pass dont match')
-    }
+    } 
   }
 
   const signInWithGoogle = async () => {
@@ -49,10 +68,8 @@ export default function SignUp() {
   function handleEmail(value) {
     if(value.length > 0){
       if(validateEmail(value)){
-        console.log('Valid email: ', value)
         setEmailValid(true)
       } else {
-        console.log('Invalid email: ', value)
         setEmailValid(false)
       }
     } else {
@@ -94,9 +111,16 @@ export default function SignUp() {
         <div className={` ${styles['right-container']} col-md-6`}>
           <div className={`${styles['right-inner-container']}`}>
             <h1 className="mb-5">Let's get started,</h1>
+            {formErrors.length > 0 && (
+              <ul>
+                {formErrors.map((err, idx) => (
+                  <li key={idx} className='text-danger my-1'>{err}</li>
+                ))}
+              </ul>
+            )}
             <label htmlFor="signupEmail"></label>
             <input id='signupEmail' className={`${styles['email-input']}`} onChange={e => {handleEmail(e.target.value)}} type="text" name="signupEmail" placeholder="email" required></input>
-            <div className={`${emailValid ? 'd-none' : `d-block mb-3 ${styles['invalid-email']}`}`}>Check email format</div>
+            {/* <div className={`${emailValid ? 'd-none' : `d-block mb-3 ${styles['invalid-email']}`}`}>Check email format</div> */}
             <div className='mb-3 position-relative'>
               <label htmlFor="signupPassword"></label>
               <input id='signupPassword' className={`${styles['password-input']} position-relative`} onChange={e => {handlePassword(e.target.value), togglePasswordVisibility}} type={showPassword ? 'text' : 'password'} name="signupPassword" placeholder="password" required>
@@ -113,8 +137,16 @@ export default function SignUp() {
                 {showConfirmPassword ? <i className="bi bi-eye-fill"></i> : <i className="bi bi-eye-slash"></i>}
               </span>
             </div>
-            <p className={`${password === confirmPassword ? 'd-none' : `d-block ${styles['invalid-email']}`}`}>Passwords don't match</p>
-            <button className={`${styles['login-btn']} w-100`} onClick={handleSignup}>Create Account</button>
+            {/* <p className={`${password === confirmPassword ? 'd-none' : `d-block ${styles['invalid-email']}`}`}>Passwords don't match</p> */}
+            <button className={`${styles['login-btn']} ${isLoading ? styles['disabled-login-btn'] : ''} w-100`} onClick={handleSignup} disabled={isLoading}>
+              {isLoading ?
+                <div className="spinner-border" style={{ width: '1rem', height: '1rem', borderWidth: '.2em'}} role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div> 
+              : 
+              'Create Account'
+              }
+            </button>
             <p className={`${styles.divider}`} >or continue with</p>
             <button type='button' className={`${styles['google-btn']} d-flex justify-content-center gap-2 align-items-center`} onClick={signInWithGoogle}>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none" role="img">
