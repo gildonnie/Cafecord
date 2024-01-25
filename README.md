@@ -1,1 +1,1 @@
-BVT Interns Group Project, a Business Communication platform set up for the scrimba sloths to complete.
+Create firebase file to run correctly - Carlos

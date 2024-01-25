@@ -1,0 +1,49 @@
+.appName {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.description {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.15em;
+  max-width: 540px;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.error404 {
+  position: absolute;
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: .9em;
+  top: 1rem;
+  right: 1rem;
+}
+
+.anchor {
+  color: #ED6300;
+}
+
+@media screen and (max-width: 400px){
+  .description {
+    font-size: 1.5rem;
+  }
+
+  .error404 {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+  }
+}
+
+@media screen and (max-width: 650px){
+  .description {
+    font-size: 1.75rem;
+  }
+}
