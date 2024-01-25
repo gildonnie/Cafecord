@@ -1,3 +1,4 @@
+
 import styles from '../Styles/SignUp.module.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
@@ -54,8 +55,6 @@ export default function SignUp() {
           email,
           password
         );
-        // const user = userCreds.user;
-        // console.log(user);
         navigate('/profile');
       } catch (error) {
         console.error(error);
