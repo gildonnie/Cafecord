@@ -2,10 +2,11 @@
 /* eslint-disable no-undef */
 import React from 'react'
 import styles from '../Styles/SignUp.module.css'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { auth, provider } from '../firebase'
-import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { useNavigate, Link } from 'react-router-dom';
+import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import profileImg from '../assets/profile-image.png';
 
 export default function SignUp() {
 
@@ -22,9 +23,15 @@ export default function SignUp() {
     console.log(email)
     if(password === confirmPassword) {
       try {
-        const userCreds = createUserWithEmailAndPassword(auth, email, password)
+        const userCreds = await createUserWithEmailAndPassword(auth, email, password)
         const user = userCreds.user;
         console.log(user)
+        
+        const displayName = "name"
+        updateProfile(auth.currentUser, {
+          displayName: displayName,
+          photoURL: profileImg
+        })
         navigate('/profile')
       } catch (error) {
         console.error(error);

@@ -4,7 +4,8 @@ import { db, auth } from '../firebase.js';
 import {  signOut } from 'firebase/auth';
 import { collection, serverTimestamp, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import Chat from '../Components/Chat-area.jsx';
+import isEqual from 'lodash/isEqual';
+import Chat from './Chat.jsx'
 
 
 function Channels() {
@@ -35,19 +36,24 @@ function Channels() {
 
 //Using on snapshot every time channelRef gets updated(New Channel gets created) the the channelObj which contains all the channels
   useEffect(() => {
+    console.log("triggered")
     const queryMessages = query(channelRef,  orderBy("time", "asc"));
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let channels = []
       snapshot.forEach((channel) => {
         channels.push({ ...channel.data(), id: channel.id })
       })
-      setChannelObj(channels)
+      if (!isEqual(channels, channelObj)) {
+
+        setChannelObj(channels)
+      }
+      
     }, (error) => {
       console.error("Error fetching messages:", error);
     });
 
     return () => unsubscribe();
-  }, [channelRef])
+  }, [channelObj])
 
   //onclick the channel id gets set to channel state which we pass to the chat area to grab only those messages that are in the room by comparing the ids of the messages to the channel id
   const handleChannel = (value) => {
