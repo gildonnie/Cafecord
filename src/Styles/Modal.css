@@ -1,0 +1,68 @@
+.calChatBody{
+    background-color: #E0C686;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal {
+    background-color: #747053;
+    /* color: white; */
+  }
+  
+  .modal-header {
+    display: flex;
+    /* justify-content: center; */
+    align-content: center;
+    background-color: #E0C686;
+    color: #1A1718;
+  }
+  
+  
+  .btn-open-modal, .btn-avatar-close, .btn-avatar-save {
+    background-color: #837247;
+    color: white;
+    
+  }
+  .btn-avatar-close:hover, .btn-avatar-save:hover {
+    background-color: #666563;
+    color: white;
+    
+  }
+  
+  #inline-radio-1, #inline-radio-2, #inline-radio-3, #inline-radio-4, #inline-radio-7, #inline-radio-8 {
+    opacity: 0;
+  } 
+  
+  .avatar-option {
+    cursor: pointer;
+    border-radius: 150px;
+    width: 150px;
+    margin-bottom: 30px;
+  }
+  
+  .avatar-option:hover {
+    outline: 3px solid #E0C686;
+  } 
+
+  .formBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .formBackground{
+    background-color: #7f7053;
+  }
+
+  .modalFooter{
+    background-color: #E0C686;
+  }
+
+.formLabel, .selectionTitle{
+    color: white;
+    font-size: 25px;
+  }

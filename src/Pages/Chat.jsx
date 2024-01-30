@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { db, auth } from '../firebase.js';
 import { collection, serverTimestamp, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc } from 'firebase/firestore';
 import isEqual from 'lodash/isEqual';
 import Button from 'react-bootstrap/Button';
 import "../Styles/Chat.css";
-
+import AvatarContext from './AvatarContext';//Changes the avatar img
 
 function Chat(props) {
   const [messages, setMessages] = useState("")
@@ -15,7 +15,7 @@ function Chat(props) {
   const { channel } = props;
 
 
-
+  const { selectedAvatar } = useContext(AvatarContext);//Changes the avatar img
 
   //The object is composed of values one of them being channel which is the id of the channel, which is used to grab only those messages with that channel id
   const addMessage = async (e) => {
@@ -100,75 +100,6 @@ function Chat(props) {
           <h1>Cafecord</h1>
         </div>
 
-        <div className='messages sent'>
-          <div className="message-info">
-            <Button className="btn btn-danger mobile-deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>
-              x
-            </Button>
-            <img src='/Avatars/Beeo-o.jpg' alt="User Avatar" />
-            <div className='message-structure'>
-              <div className="message-details">
-                <p>Cafevibes209</p>
-                <p className='timestamp'>Sent 12:03:09 PM</p>
-                <Button className="btn btn-danger deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>
-                  X
-                </Button>
-              </div>
-              <p>Hey Antonia! How is the new French press?</p>
-            </div>
-          </div>
-        </div>
-
-        <div className='messages received'>
-          <div className="message-info">
-            <Button className="btn btn-danger mobile-deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>
-              x
-            </Button>
-            <img src='/Avatars/cafeart.jpg' alt="User Avatar" />
-            <div className='message-structure'>
-              <div className="message-details">
-                <p>AntoniaLatte</p>
-                <p className='timestamp'>Sent 12:09:43 PM</p>
-                <Button className="btn btn-danger deleteBtn" type="Button" onClick={(e) => deleteMessage(e.target)}>
-                  X
-                </Button>
-              </div>
-              <p>Its working well! Im making a second cup lol!</p>
-            </div>
-          </div>
-        </div>
-
-
-        <div className='messages received'>
-          <div className="message-info">
-            <Button
-
-              className="btn btn-danger mobile-deleteBtn"
-              type="Button"
-              onClick={(e) => deleteMessage(e.target)}
-
-            >
-              x
-            </Button>
-            <img src='/Avatars/computerDog.jpg' alt="User Avatar" />
-            <div className='message-structure'>
-              <div className="message-details">
-                <p>AustinBrew</p>
-                <p className='timestamp'>Sent 12:15:04 PM</p>
-                <Button
-
-                  className="btn btn-danger deleteBtn"
-                  type="Button"
-                  onClick={(e) => deleteMessage(e.target)}
-
-                >
-                  X
-                </Button>
-              </div>
-              <p>Hey I want one!! That sounds so good! yum I need a cup or 3 right now! This project and frying my brain! This is driving me insane in the membrane!! Ahhhh I wanna go home but im already there...</p>
-            </div>
-          </div>
-        </div>
 
         {/* Dynamic rendering of messages starts here */}
         {messageCollection.map((message) => {
@@ -183,19 +114,19 @@ function Chat(props) {
           return (
             <div className='messages sent' key={message.id}>
               <div className="message-info">
-                <img src={message.profileImg} alt="User Avatar" /> {/* Update avatar as needed */}
+                <img src={selectedAvatar || message.profileImg} alt="User Avatar" /> {/* Update avatar as needed */}
                 <div className='message-structure'>
                   <div className="message-details">
                     <p>{message.user}</p> {/* Replace with actual sender name */}
                     <p className='timestamp'>Sent {dateSent}</p>
                     {/* Delete button and other message details */}
-                    <Button className="btn btn-danger deleteBtn" type="Button" onClick={(e) => deleteMessage(message.id)}>X</Button>
+                    <Button className="btn btn-danger deleteBtn" type="Button" onClick={() => deleteMessage(message.id)}>X</Button>
                   </div>
                   <p>{message.text}</p>
                   {/* {console.log('Message:', message)} */}
                 </div>
               </div>
-              {/* <div ref={messagesEndRef} /> Empty div for scrolling */}
+               <div ref={messagesEndRef} /> {/*Empty div for scrolling */}
             </div>
           )
         })}

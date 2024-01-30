@@ -1,11 +1,17 @@
-.SideMenu {
+.smBackground{
+  display: flex;
+  background-color: #E0C686;
+}
+
+.side-menu {
     background-color: #E0C686;
-    width: 20%;
-    height: 880px;
+    width: 15%;
+    /* height: 880px; */
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
 }
+
 .button-container {
     display: flex;
     flex-direction: column;
@@ -39,8 +45,8 @@
   }
   
   .avatar img {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background-color: #7F7053;
     /* background-image: url('../assets/cafecordav.png'); */
@@ -60,6 +66,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     list-style-type: none;
+    text-align: center;
 
 }
 .channel-list .channel-heading {
@@ -71,11 +78,35 @@
     margin-bottom: 15px; 
     transition: background-color 0.3s;
 }
-.channel-list li:hover {
-    background-color: #F9E8BD
+.channel-list li:hover, .editBtn:hover {
+    background-color: #F9E8BD;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .channel-list li a {
     text-decoration: none; 
     color: black;
+}
+
+.smBtn{
+  border: none;
+}
+
+.editBtn{
+  width: 100%;
+  border: none;
+  background-color:#E0C686;
+}
+
+@media (max-width:800px) {
+  .side-menu{
+    width: 30%;
+  }
+
+  .avatar > img{
+    width: 100px;
+    height: 100px;
+  }
+  
 }

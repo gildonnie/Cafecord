@@ -33,10 +33,10 @@
   background-attachment: fixed;
   background-size: cover;
   /* background-size: 1700px 1000px; */
-  border-radius: 20px;
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+  /* border-radius: 20px; */
+  /* margin-top: 20px; */
+  margin-left:5%;
+  /* margin-right: 20px; */
   margin-bottom: 0px;
   display:flex;
   align-items: center;
@@ -71,8 +71,8 @@
 .messages {
   background-color: rgb(211, 211, 211);
   color: black;
-  min-width: 42%;
-  max-width: 42%;
+  min-width: 70%;
+  max-width: 70%;
   /* overflow: hidden; */
 }
 
@@ -81,11 +81,11 @@
 }
 
 .sent {
-  margin-left: 50%;
+  /* margin-left: 40%; */
 }
 
 .received {
-  margin-right: 50%;
+  /* margin-right: 50%; */
 }
 
 .sent,
@@ -95,8 +95,8 @@
 }
 
 .message-structure {
-  min-width: 80%;
-  max-width: 80%;
+  min-width: 85%;
+  max-width: 85%;
   display: flex;
   flex-direction: column;
 }
@@ -151,7 +151,7 @@
 textarea {
   display: block;
   width: 100%;
-  max-width: 85%; /* Adjust the percentage as needed */
+  max-width: 70%; /* Adjust the percentage as needed */
   background-color: #7f7053;
   color: #fff;
   padding: 10px; /* Added padding for better visual appearance */
@@ -168,8 +168,8 @@ textarea {
 
 .sendBtn {
   position: fixed;
-  bottom: 30px;
-  right: 75px;
+  bottom: 10px;
+  right: 9%;
   border:none;
 }
 
@@ -182,7 +182,7 @@ textarea {
 }
 
 
-@media (max-width: 1135px) {
+@media (max-width: 1340px) {
   .message-structure{
     min-width:70%;
   }
@@ -197,7 +197,7 @@ textarea {
     margin-right: 0;
   }
   .messages {
-    min-width: 60%;
+    min-width: 70%;
     margin-left: 5%;
     margin-right: 5%;
     overflow: auto; /* Added to allow scrolling within messages */
@@ -226,14 +226,19 @@ textarea {
   }
 
   .ChatMainBody {
-    margin: 0;
+    /* margin: 0; */
     border-radius: 0;
   }
 
   .sendBtn {
-    bottom: 35px;
-    right: 10%;
+    bottom: 10px;
+    right: 15%;
     border:none;
+  }
+
+textarea{
+  width: 50%;
+
   }
 }
 
