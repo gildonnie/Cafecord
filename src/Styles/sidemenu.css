@@ -78,10 +78,18 @@
     margin-bottom: 15px; 
     transition: background-color 0.3s;
 }
+.editBtn {
+  transition: background-color 0.3s;
+}
+
 .channel-list li:hover, .editBtn:hover {
     background-color: #F9E8BD;
     cursor: pointer;
     text-decoration: underline;
+}
+
+.channel-list li:visited{
+  text-decoration: underline;
 }
 
 .channel-list li a {
@@ -109,4 +117,10 @@
     height: 100px;
   }
   
+}
+
+.active-channel {
+  background-color: #99723A;
+  color: white;
+
 }

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState, useContext, channelRef } from 'react';
 import { db, auth } from '../firebase.js';
-import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { signOut, onAuthStateChanged, updateProfile } from 'firebase/auth';
 import { collection, serverTimestamp, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
@@ -16,6 +16,32 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 const SideMenu = () => {
+
+  const [displayName, setDisplayName] = useState(""); // Define state for displayName
+  const [avatar, setAvatar] = useState(""); // Define state for avatar
+
+
+  const handleUpdate = () => {
+    updateProfile(auth.currentUser, {
+      displayName: displayName,
+      photoURL: avatar
+    }).then(() => {
+      navigate('/chat')
+    }).catch((error) => {
+      console.log(error)
+    });
+
+  }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user)
+      } else {
+        console.log('not logged in')
+      }
+    });
+  }, [])
 
   const { selectedAvatar } = useContext(AvatarContext);
   const { setSelectedAvatar } = useContext(AvatarContext);
@@ -65,10 +91,20 @@ const SideMenu = () => {
     return () => unsubscribe();
   }, [channelObj])
 
-  const handleChannel = (value) => {
-    setChannel(value)
-    console.log(channel)
-  }
+  // const handleChannel = (value) => {
+  //   setChannel(value)
+  //   console.log(channel)
+  // }
+
+  const [activeChannelId, setActiveChannelId] = useState(null);
+
+  const handleChannel = (channelId) => {
+    setChannel(channelId);
+    setActiveChannelId(channelId);
+    console.log(channelId);
+  };
+  //highlights the active channel your
+
 
   //uses singout function from firebase to signout user 
   const logout = async () => {
@@ -98,7 +134,7 @@ const SideMenu = () => {
       <div className="side-menu">
         <div className="avatar-container">
           <div className="avatar">
-            <img src={selectedAvatar || userInfo.avatar} alt="User Avatar" /> 
+            <img src={selectedAvatar || userInfo.avatar} alt="User Avatar" />
             {/* uses selected Avatar from EditProfile or userInfo*/}
           </div>
           <p className='username'>{userInfo.userName}</p>
@@ -106,8 +142,9 @@ const SideMenu = () => {
 
         <ul className="channel-list">
           <li className="channel-heading">Channel</li>
-          {channelObj ? channelObj.map((channel) => <li onClick={() => handleChannel(channel.id)} key={channel.id}>{channel.title}</li>) : <li>No Channels</li>}
+          {channelObj ? channelObj.map((channel) => <li onClick={() => handleChannel(channel.id)} key={channel.id}  className={channel.id === activeChannelId ? "active-channel" : ""}>{channel.title}</li>) : <li>No Channels</li>}
           <li><Link to="/add">+ Start New Channel</Link></li>
+          <li><Link to="/group-form">Create Group</Link></li>
           <li>
             <button className='editBtn' onClick={handleShow}>
               Edit Profile
@@ -139,7 +176,7 @@ const SideMenu = () => {
                       <div key={`inline-${type}`} className="mb-3 formBody">
                         <Form.Check
                           inline
-                          label={<img onClick={() => selectAvatar('/Avatars/coffeeBrewers.jpg')} src="/Avatars/coffeeBrewers.jpg" alt="Coffee Brewer" className="avatar-option" />}
+                          label={<img onClick={() => handleUpdate('/Avatars/coffeeBrewers.jpg')} src="/Avatars/coffeeBrewers.jpg" alt="Coffee Brewer" className="avatar-option" />}
                           name="group1"
                           type={type}
                           id={`inline-${type}-1`}

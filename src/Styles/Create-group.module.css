@@ -1,75 +1,163 @@
+* {
+    margin: 0;
+}
 
 .body {
-    margin:  0 auto;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #805a229c;
+    font-size: 1em;
+    background-color: #6F4E37;
+   
 }
+
 .container {
-    object-fit : contain;
     background-color: #ffe0b2;
- }
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    max-width: 70vw;
+}
 
 
-.imageContainer{
-    width: 100%; 
-} 
-.imageContainer img{
-    margin-top: 4%;
+.imageContainer {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* max-height: 70vh; */
+  max-height: 80vh;
+}
+
+.imageContainer img {
     width: 100%;
-    height: 94%;
-}
-.form {
-    margin: 0px 15px;
+    height: 100%;
+    object-fit: scale-down;
+    border-radius: 0px;
 }
 
-.form h2{
-    margin-top: 30px;
+.formContainer {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly;
+    height: 100%;
+    margin: auto;
+}
+
+.heading{
+
     color: rgb(160, 76, 16);
     font-family: Inter, sans-serif;
     font-weight: 600;
-
+    font-size: 1.5em;
+    width: 200px;
+    text-align: center;
+    margin: 0 auto; 
+    margin-top: 25px;
+    /* margin-top: 30px; */
 }
-.form .inputEl{
-    border-radius: 50px;
-    margin: 20px 0px; 
-    background-color:#d4c6b5 ; 
+.form .inputEl {
+    border-radius: 20px;
+    margin: 15px auto;
+    background-color: #deccb5;
     padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    /* margin: 5px 0; */
+  
+}
+.form .inputEl:focus{
+    background-color:#deccb5 ;
+    box-shadow: 0 0 10px rgb(141, 58, 3);
+    border: none;
+    /* height: 80%; */
+}
+.form .inputBlur{
+    background-color: #deccb5;
+}
+.usernameInput .inputEl{
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 15px 0;
+}
+.usernameInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; 
 }
 
 .form button {
-    margin: 20px 0px;
-    border-radius: 50px;
-    width: 80%;
+    border-radius: 30px;
+    width: 100%;
     background-color: #ED6300;
     color: white;
-    padding: 10px 10px;
+    padding: 6px 12px;
+    border: none;
 }
-.groupMembersContainer{
-    padding: 25px 0 25px 20px;
-    overflow-x: scroll
+.form button:hover{
+    background-color: #f1830d;
+    color: white;
 }
+.groupMembersContainer {
+    min-height: 60px;
+    padding: 10px 0 10px 20px;
+    overflow-x: scroll;
+    display: block;
+    max-width: 70vw;
+    margin-top: 10px;
+    box-shadow: inset 0px 0px 10px 2px rgba(42, 40, 39, 0.3);
+    border: none;
+    border: 1px solid green;
+
+}
+
 .profileImgContainer {
     position: relative;
-    z-index: 2
+    z-index: 2;
+    width: 80px;
+    margin: 0 auto;
 }
-.profileImage{
-    object-fit:cover;
+
+.profileImage {
+    object-fit: contain;
     opacity: 0.8;
-    z-index: 3,
+    width: 100%;
 }
 .deleteIcon {
     position: absolute;
     left: 52%;
-    top:-10px;
+    top: -10px;
     fill: tomato;
-    
 }
-.deleteIcon, .profileImage:hover{
+
+.deleteIcon,
+.profileImage:hover {
     cursor: pointer;
 }
-.deleteIcon:hover{
+
+.deleteIcon:hover {
     fill: red;
 }
-.deleteIcon:active{
+
+.deleteIcon:active {
     fill: grey;
 }
 
+.addIcon{
+    background-color: #ED6300;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+}
 
+@media  (max-width: 330px){
+    .container{
+      max-width: 100vw;
+    }
+}

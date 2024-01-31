@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { auth, provider } from '../firebase.js';
 import { signInWithPopup,  signInWithEmailAndPassword } from 'firebase/auth';
@@ -52,7 +52,7 @@ const LoginBox = () => {
         </div>
         <div className="col-md-6 nopadding">
           <div className="p-4 rounded shadow login-container">
-            <h2 className="text mb-5">Welcome to Cafecord</h2>
+            <h2 className="text mb-5">Welcome to Cafecord!</h2>
             <form onSubmit={handleSubmit}>
               {['Email', 'Password'].map((label) => (
                 <div className="mb-3 form-group" key={label}>
