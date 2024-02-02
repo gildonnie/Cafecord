@@ -35,3 +35,7 @@ body, html {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
+
+#inline-radio-5, #inline-radio-6 {
+  opacity: 0;
+}
