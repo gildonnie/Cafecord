@@ -51,22 +51,6 @@
 ::placeholder {
   color: white;
 }
-/* .SideMenu {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: sticky;
-  width: 10%;
-  background-color: #e0c686;
-}
-
-.side-btn {
-  color: black;
-  width: 60px;
-  height: 60px;
-  font-size: 80%;
-} */
-
 
 .messages {
   background-color: rgb(211, 211, 211);
@@ -135,9 +119,10 @@
 }
 
 .deleteBtn {
-  color: white;
+  background-color: rgb(211, 211, 211);
+  color: black;
   border-radius: 4px;
-  border: none;
+  border: gray solid 1px;
   font-size: 10px;
   display: flex;
   align-items: center;
@@ -147,6 +132,10 @@
   /* margin-left: auto; */
 }
 
+.deleteBtn:hover {
+  background-color: red;
+  border:none;
+}
 
 textarea {
   display: block;

@@ -120,7 +120,7 @@ function Chat(props) {
                     <p>{message.user}</p> {/* Replace with actual sender name */}
                     <p className='timestamp'>Sent {dateSent}</p>
                     {/* Delete button and other message details */}
-                    <Button className="btn btn-danger deleteBtn" type="Button" onClick={() => deleteMessage(message.id)}>X</Button>
+                    <Button className="deleteBtn" type="Button" onClick={() => deleteMessage(message.id)}>X</Button>
                   </div>
                   <p>{message.text}</p>
                   {/* {console.log('Message:', message)} */}

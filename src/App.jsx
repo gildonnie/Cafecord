@@ -10,6 +10,7 @@ import SignUp from './Pages/SignUp';
 import CreateGroup from './Pages/Create-group';
 import Add from './Pages/TempAddChan'
 import AvatarContext from './Pages/AvatarContext';
+import Products from './Pages/Products';
 
 function App() {
   const location = useLocation();
@@ -29,6 +30,7 @@ function App() {
         <Route path='/EditProfile' element={<EditProfile />}/>
         <Route path="/group-form" element={<CreateGroup/>}/>
         <Route path="/add" element={<Add/>}/>
+        <Route path="/Products" element={<Products/>}/>
     </Routes> 
     </AvatarContext.Provider >                                                                                 
   )

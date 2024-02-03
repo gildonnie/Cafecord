@@ -103,7 +103,7 @@ const SideMenu = () => {
     setActiveChannelId(channelId);
     console.log(channelId);
   };
-  //highlights the active channel your
+  //highlights the active channel your currently in
 
 
   //uses singout function from firebase to signout user 
@@ -145,6 +145,7 @@ const SideMenu = () => {
           {channelObj ? channelObj.map((channel) => <li onClick={() => handleChannel(channel.id)} key={channel.id}  className={channel.id === activeChannelId ? "active-channel" : ""}>{channel.title}</li>) : <li>No Channels</li>}
           <li><Link to="/add">+ Start New Channel</Link></li>
           <li><Link to="/group-form">Create Group</Link></li>
+          <li><Link to="/Products">Products</Link></li>
           <li>
             <button className='editBtn' onClick={handleShow}>
               Edit Profile

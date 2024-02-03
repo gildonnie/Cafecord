@@ -1,0 +1,8 @@
+.prodBackground{
+    height: 100vh;
+    background-color:#E0C686 ;
+}
+
+.products > img{
+    width: 400px;
+}
