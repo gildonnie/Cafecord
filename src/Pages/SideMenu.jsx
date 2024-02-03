@@ -17,8 +17,8 @@ import Modal from 'react-bootstrap/Modal';
 
 const SideMenu = () => {
 
-  const [displayName, setDisplayName] = useState(""); // Define state for displayName
-  const [avatar, setAvatar] = useState(""); // Define state for avatar
+  // const [displayName, setDisplayName] = useState(""); // Define state for displayName
+  // const [avatar, setAvatar] = useState(""); // Define state for avatar
 
 
   const handleUpdate = () => {
@@ -55,8 +55,43 @@ const SideMenu = () => {
   };
 
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setAvatar('');
+    setUsername('');
+  }
   const handleShow = () => setShow(true);
+
+  const [username, setUsername] = useState('');
+  const [avatar, setAvatar] = useState('');
+
+  const avatarList = [
+    {url: '/Avatars/Beeo-o.jpg', alt:'social-media-cafe'},
+    {url: '/Avatars/cafeart.jpg', alt: 'two-cafe-friends'},
+    {url: '/Avatars/cafeart2.jpg', alt: 'lady-holding-coffee'},
+    {url: '/Avatars/computerDog.jpg', alt: 'coding-dog'},
+    {url: '/Avatars/coffeeMaker2.jpg', alt: 'pink-cafe-girl'},
+    {url: '/Avatars/coffeeBrewers2.jpg', alt: 'boy-walking-with-coffee'}
+  ]
+  
+  const handleProfile = async () => {
+    await updateProfile(auth.currentUser, {
+      displayName: username,
+      photoURL: avatar
+    })
+    
+
+    setUserInfo({
+      ...userInfo,
+      userName: username,
+      avatar: avatar
+    });
+    console.log('Name', auth.currentUser.displayName)
+    console.log('avatar: ', auth.currentUser.photoURL)
+    setShow(false)
+    setAvatar('');
+    setUsername('');
+  }
 
 
 
@@ -88,7 +123,21 @@ const SideMenu = () => {
       console.error("Error fetching messages:", error);
     });
 
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user)
+        setUserInfo({
+          avatar: user.photoURL,
+          userName: user.displayName
+        })
+      } else {
+        console.error('error')
+      }
+    })
+
     return () => unsubscribe();
+
+    
   }, [channelObj])
 
   // const handleChannel = (value) => {
@@ -114,19 +163,23 @@ const SideMenu = () => {
   }
 
   //grabbing current user data
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user)
-        setUserInfo({
-          avatar: user.photoURL,
-          userName: user.displayName
-        })
-      } else {
-        console.error('error')
-      }
-    })
-  }, [])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     await onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       console.log(user)
+  //       setUserInfo({
+  //         avatar: user.photoURL,
+  //         userName: user.displayName
+  //       })
+  //     } else {
+  //       console.error('error')
+  //     }
+  //   })
+  //   }
+  //   fetchData()
+    
+  // }, [])
 
 
   return (
@@ -134,7 +187,7 @@ const SideMenu = () => {
       <div className="side-menu">
         <div className="avatar-container">
           <div className="avatar">
-            <img src={selectedAvatar || userInfo.avatar} alt="User Avatar" />
+            <img src={userInfo.avatar} alt="User Avatar" />
             {/* uses selected Avatar from EditProfile or userInfo*/}
           </div>
           <p className='username'>{userInfo.userName}</p>
@@ -157,82 +210,113 @@ const SideMenu = () => {
                 <Modal.Title className="modal-title">Edit Profile</Modal.Title>
               </Modal.Header>
               <Modal.Body className='formBackground'>
-                <Form >
+              <Form >
 
-                  {/* Edit/Change username form*/}
-                  <Form.Group className="mb-3" controlId="userForm.ControlInput1">
-                    <Form.Label className='formLabel'>Change Username</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="New username..."
-                      autoFocus
-                    />
-                  </Form.Group>
+{/* Edit/Change username form*/}
+<Form.Group className="mb-3" controlId="userForm.ControlInput1">
+  <Form.Label className='formLabel'>Change Username</Form.Label>
+  <Form.Control
+    type="text"
+    placeholder="New username..."
+    autoFocus
+    onChange={e => setUsername(e.target.value)}
+  />
+</Form.Group>
 
-                  {/* Avatar selection form using radio buttons with avatar images*/}
-                  <p className='selectionTitle'>Select Avatar</p>
-                  <div className="avatar-form">
-                    {/* <p className="avatar-form--hide">Select Avatar</p> */}
-                    {['radio'].map((type) => (
-                      <div key={`inline-${type}`} className="mb-3 formBody">
-                        <Form.Check
-                          inline
-                          label={<img onClick={() => handleUpdate('/Avatars/coffeeBrewers.jpg')} src="/Avatars/coffeeBrewers.jpg" alt="Coffee Brewer" className="avatar-option" />}
-                          name="group1"
-                          type={type}
-                          id={`inline-${type}-1`}
-                          onClick={(e) => {
-                            console.log(e.target.checked);
-                          }}
-                        />
+{/* Avatar selection form using radio buttons with avatar images*/}
+<p className='selectionTitle'>Select Avatar</p>
+<div className= "avatar-form">
+<div key='default-radio' className="mb-3 formBody">
+  {
+    avatarList.map((avatar, idx) => (
+      <Form.Check
+      key={avatar.url}
+      id={`inline-radio-${idx+1}`}
+      type='radio'
+      name="group1"
+      inline
+      value={avatar.url}
+      label={<img src={avatar.url} alt={avatar.alt} className="avatar-option"/>}
+      onClick={() => setAvatar(avatar.url)}
+      />
+    ))
+  }
+</div>
+  {/* <p className="avatar-form--hide">Select Avatar</p> */}
+  {/* {['radio'].map((type) => (
+    
+    <div key={`inline-${type}`} className="mb-3 formBody">
+    {
+      avatarList.map((avatar, idx) => (
+        <Form.Check
+          id={`inline-radio-${idx+1}`}
+          type='radio'
+          inline
+          value={avatar.url}
+          label={<img src={avatar.url} alt={avatar.alt} className="avatar-option"/>}
+          onClick={setAvatar(avatar.url)}
+        />
+      ))
+    }
+      <Form.Check
+        inline
+        label= {<img src= '/Avatars/Beeo-o.jpg' alt='social-media-cafe' className="avatar-option"/>}
+        name="group1"
+        type={type}
+        id={`inline-${type}-1`}
+        onClick={(e) => {
+          console.log(e.target.checked);
+        }}
+      />
 
-                        <Form.Check
-                          inline
-                          label={<img onClick={() => selectAvatar('/Avatars/cafeart.jpg')} src='/Avatars/cafeart.jpg' alt='two-cafe-friends' className="avatar-option" />}
-                          name="group1"
-                          type={type}
-                          id={`inline-${type}-2`}
-                        />
+      <Form.Check
+        inline
+        label={<img src= '/Avatars/cafeart.jpg' alt='two-cafe-friends'className="avatar-option"/>}
+        name="group1"
+        type={type}
+        id={`inline-${type}-2`}
+        
+      />
 
-                        <Form.Check
-                          inline
-                          label={<img onClick={() => selectAvatar('/Avatars/cafeart2.jpg')} src='/Avatars/cafeart2.jpg' alt='lady-holding-coffee' className="avatar-option" />}
-                          name="group1"
-                          type={type}
-                          id={`inline-${type}-3`}
-                        />
+      <Form.Check
+        inline
+        label={<img src= '/Avatars/cafeart2.jpg' alt='lady-holding-coffee'className="avatar-option"/>}
+        name="group1"
+        type={type}
+        id={`inline-${type}-3`}
+      />
 
-                        <Form.Check
-                          inline
-                          label={<img onClick={() => selectAvatar('/Avatars/computerDog.jpg')} src='/Avatars/computerDog.jpg' alt='coding-dog' className="avatar-option" />}
-                          name="group1"
-                          type={type}
-                          id={`inline-${type}-4`}
-                        />
+      <Form.Check
+        inline
+        label={<img src= '/Avatars/computerDog.jpg' alt='coding-dog'className="avatar-option"/>}
+        name="group1"
+        type={type}
+        id={`inline-${type}-4`}
+      />
 
-                        <label>
-                          <Form.Check
-                            inline
-                            label={<img onClick={() => selectAvatar('/Avatars/coffeeMaker2.jpg')} src='/Avatars/coffeeMaker2.jpg' alt='pink-cafe-girl' className="avatar-option" />}
-                            name="group1"
-                            type={type}
-                            id={`inline-${type}-7`}
-                          />
-                        </label>
-
-
-                        <Form.Check
-                          inline
-                          label={<img onClick={() => selectAvatar('/Avatars/coffeeBrewers2.jpg')} src='/Avatars/coffeeBrewers2.jpg' alt='boy-walking-with-coffee' className="avatar-option" />}
-                          name="group1"
-                          type={type}
-                          id={`inline-${type}-8`}
-                        />
-
-                      </div>
-                    ))}
-                  </div>
-                </Form>
+      <label>
+      <Form.Check
+        inline
+        label={<img src= '/Avatars/coffeeMaker2.jpg' alt='pink-cafe-girl' className="avatar-option"/>}
+        name="group1"
+        type={type}
+        id={`inline-${type}-7`}
+      />
+      </label>
+      
+      
+      <Form.Check
+        inline
+        label={<img src= '/Avatars/coffeeBrewers2.jpg' alt='boy-walking-with-coffee' className="avatar-option" />}
+        name="group1"
+        type={type}
+        id={`inline-${type}-8`}
+      />
+    
+    </div>
+  ))} */}
+</div>
+              </Form>
               </Modal.Body>
 
               <Modal.Footer className='modalFooter'>
@@ -241,9 +325,9 @@ const SideMenu = () => {
                   Close
                 </Button>
 
-                {/* <Button variant="avatar-save" onClick={handleClose}>
+                <Button variant="avatar-save" onClick={handleProfile}>
                 Save Changes
-              </Button> */}
+              </Button>
 
               </Modal.Footer>
             </Modal>

@@ -43,9 +43,10 @@
     margin-bottom: 30px;
   }
   
-  .avatar-option:hover {
+  input[type="radio"]:checked + label .avatar-option {
     outline: 3px solid #E0C686;
-  } 
+  }
+  
 
   .formBody{
     display: flex;
