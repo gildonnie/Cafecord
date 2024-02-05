@@ -1,15 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState, useContext, channelRef } from 'react';
+import { useEffect, useState } from 'react';
 import { db, auth } from '../firebase.js';
 import { signOut, onAuthStateChanged, updateProfile } from 'firebase/auth';
-import { collection, serverTimestamp, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 import { Link } from 'react-router-dom';
-import Chat from './Chat.jsx'
-import AvatarContext from './AvatarContext';
-import "../Styles/sidemenu.css"
-import { set } from 'lodash';
+import Chat from './Chat.jsx';
+import "../Styles/sidemenu.css";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -17,21 +15,21 @@ import Modal from 'react-bootstrap/Modal';
 
 const SideMenu = () => {
 
-  // const [displayName, setDisplayName] = useState(""); // Define state for displayName
-  // const [avatar, setAvatar] = useState(""); // Define state for avatar
+  const[description, setDescription] = useState('');
+  const [channel, setChannel] = useState("")
+  const [channelObj, setChannelObj] = useState();
+  const [show, setShow] = useState(false);
+  const [username, setUsername] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [activeChannelId, setActiveChannelId] = useState(null);
+  const [userInfo, setUserInfo] = useState({
+    avatar: "",
+    userName: ""
+  })
 
+  const navigate = useNavigate();
+  const channelRef = collection(db, "channels");
 
-  const handleUpdate = () => {
-    updateProfile(auth.currentUser, {
-      displayName: displayName,
-      photoURL: avatar
-    }).then(() => {
-      navigate('/chat')
-    }).catch((error) => {
-      console.log(error)
-    });
-
-  }
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -43,27 +41,13 @@ const SideMenu = () => {
     });
   }, [])
 
-  const { selectedAvatar } = useContext(AvatarContext);
-  const { setSelectedAvatar } = useContext(AvatarContext);
 
-  const selectAvatar = (avatar) => {
-    if (window.confirm("Do you want to set this as your new avatar?")) {
-      setSelectedAvatar(avatar);
-      localStorage.setItem('selectedAvatar', avatar); // Save to local storage
-    }
-
-  };
-
-  const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
     setAvatar('');
     setUsername('');
   }
   const handleShow = () => setShow(true);
-
-  const [username, setUsername] = useState('');
-  const [avatar, setAvatar] = useState('');
 
   const avatarList = [
     {url: '/Avatars/Beeo-o.jpg', alt:'social-media-cafe'},
@@ -92,18 +76,6 @@ const SideMenu = () => {
     setAvatar('');
     setUsername('');
   }
-
-
-
-  const [channel, setChannel] = useState("")
-  const [channelObj, setChannelObj] = useState();
-  const [userInfo, setUserInfo] = useState({
-    avatar: "",
-    userName: ""
-  })
-  const navigate = useNavigate();
-  const channelRef = collection(db, "channels");
-
 
   //Using on snapshot every time channelRef gets updated(New Channel gets created) the the channelObj which contains all the channels
   useEffect(() => {
@@ -134,23 +106,15 @@ const SideMenu = () => {
         console.error('error')
       }
     })
-
     return () => unsubscribe();
-
-    
   }, [channelObj])
 
-  // const handleChannel = (value) => {
-  //   setChannel(value)
-  //   console.log(channel)
-  // }
-
-  const [activeChannelId, setActiveChannelId] = useState(null);
-
-  const handleChannel = (channelId) => {
-    setChannel(channelId);
-    setActiveChannelId(channelId);
-    console.log(channelId);
+  const handleChannel = (channelInfo) => {
+    console.log(channelInfo);
+    setChannel(channelInfo.id);
+    setActiveChannelId(channelInfo.id);
+    setDescription(channelInfo.description)
+    
   };
   //highlights the active channel your currently in
 
@@ -161,26 +125,6 @@ const SideMenu = () => {
     navigate('/')
 
   }
-
-  //grabbing current user data
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       console.log(user)
-  //       setUserInfo({
-  //         avatar: user.photoURL,
-  //         userName: user.displayName
-  //       })
-  //     } else {
-  //       console.error('error')
-  //     }
-  //   })
-  //   }
-  //   fetchData()
-    
-  // }, [])
-
 
   return (
     <div className='smBackground'>
@@ -195,9 +139,9 @@ const SideMenu = () => {
 
         <ul className="channel-list">
           <li className="channel-heading">Channel</li>
-          {channelObj ? channelObj.map((channel) => <li onClick={() => handleChannel(channel.id)} key={channel.id}  className={channel.id === activeChannelId ? "active-channel" : ""}>{channel.title}</li>) : <li>No Channels</li>}
-          <li><Link to="/add">+ Start New Channel</Link></li>
-          <li><Link to="/group-form">Create Group</Link></li>
+          {channelObj ? channelObj.map((channel) => <li onClick={() => handleChannel(channel)} key={channel.id}  className={channel.id === activeChannelId ? "active-channel" : ""}>{channel.title}</li>) : <li>No Channels</li>}
+          <hr />
+          <li className="createGroup"><Link to="/group-form">Create Group</Link></li>
           <li><Link to="/Products">Products</Link></li>
           <li>
             <button className='editBtn' onClick={handleShow}>
@@ -210,133 +154,54 @@ const SideMenu = () => {
                 <Modal.Title className="modal-title">Edit Profile</Modal.Title>
               </Modal.Header>
               <Modal.Body className='formBackground'>
-              <Form >
+                <Form >
+                  {/* Edit/Change username form*/}
+                  <Form.Group className="mb-3" controlId="userForm.ControlInput1">
+                    <Form.Label className='formLabel'>Change Username</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="New username..."
+                      autoFocus
+                      onChange={e => setUsername(e.target.value)}
+                    />
+                  </Form.Group>
 
-{/* Edit/Change username form*/}
-<Form.Group className="mb-3" controlId="userForm.ControlInput1">
-  <Form.Label className='formLabel'>Change Username</Form.Label>
-  <Form.Control
-    type="text"
-    placeholder="New username..."
-    autoFocus
-    onChange={e => setUsername(e.target.value)}
-  />
-</Form.Group>
-
-{/* Avatar selection form using radio buttons with avatar images*/}
-<p className='selectionTitle'>Select Avatar</p>
-<div className= "avatar-form">
-<div key='default-radio' className="mb-3 formBody">
-  {
-    avatarList.map((avatar, idx) => (
-      <Form.Check
-      key={avatar.url}
-      id={`inline-radio-${idx+1}`}
-      type='radio'
-      name="group1"
-      inline
-      value={avatar.url}
-      label={<img src={avatar.url} alt={avatar.alt} className="avatar-option"/>}
-      onClick={() => setAvatar(avatar.url)}
-      />
-    ))
-  }
-</div>
-  {/* <p className="avatar-form--hide">Select Avatar</p> */}
-  {/* {['radio'].map((type) => (
-    
-    <div key={`inline-${type}`} className="mb-3 formBody">
-    {
-      avatarList.map((avatar, idx) => (
-        <Form.Check
-          id={`inline-radio-${idx+1}`}
-          type='radio'
-          inline
-          value={avatar.url}
-          label={<img src={avatar.url} alt={avatar.alt} className="avatar-option"/>}
-          onClick={setAvatar(avatar.url)}
-        />
-      ))
-    }
-      <Form.Check
-        inline
-        label= {<img src= '/Avatars/Beeo-o.jpg' alt='social-media-cafe' className="avatar-option"/>}
-        name="group1"
-        type={type}
-        id={`inline-${type}-1`}
-        onClick={(e) => {
-          console.log(e.target.checked);
-        }}
-      />
-
-      <Form.Check
-        inline
-        label={<img src= '/Avatars/cafeart.jpg' alt='two-cafe-friends'className="avatar-option"/>}
-        name="group1"
-        type={type}
-        id={`inline-${type}-2`}
-        
-      />
-
-      <Form.Check
-        inline
-        label={<img src= '/Avatars/cafeart2.jpg' alt='lady-holding-coffee'className="avatar-option"/>}
-        name="group1"
-        type={type}
-        id={`inline-${type}-3`}
-      />
-
-      <Form.Check
-        inline
-        label={<img src= '/Avatars/computerDog.jpg' alt='coding-dog'className="avatar-option"/>}
-        name="group1"
-        type={type}
-        id={`inline-${type}-4`}
-      />
-
-      <label>
-      <Form.Check
-        inline
-        label={<img src= '/Avatars/coffeeMaker2.jpg' alt='pink-cafe-girl' className="avatar-option"/>}
-        name="group1"
-        type={type}
-        id={`inline-${type}-7`}
-      />
-      </label>
-      
-      
-      <Form.Check
-        inline
-        label={<img src= '/Avatars/coffeeBrewers2.jpg' alt='boy-walking-with-coffee' className="avatar-option" />}
-        name="group1"
-        type={type}
-        id={`inline-${type}-8`}
-      />
-    
-    </div>
-  ))} */}
-</div>
-              </Form>
+                  {/* Avatar selection form using radio buttons with avatar images*/}
+                  <p className='selectionTitle'>Select Avatar</p>
+                  <div className= "avatar-form">
+                    <div key='default-radio' className="mb-3 formBody">
+                      {
+                        avatarList.map((avatar, idx) => (
+                          <Form.Check
+                          key={avatar.url}
+                          id={`inline-radio-${idx+1}`}
+                          type='radio'
+                          name="group1"
+                          inline
+                          value={avatar.url}
+                          label={<img src={avatar.url} alt={avatar.alt} className="avatar-option"/>}
+                          onClick={() => setAvatar(avatar.url)}
+                          />
+                        ))
+                      }
+                    </div>
+                  </div>
+                </Form>
               </Modal.Body>
-
               <Modal.Footer className='modalFooter'>
-
                 <Button variant="avatar-close" onClick={handleClose}>
                   Close
                 </Button>
-
                 <Button variant="avatar-save" onClick={handleProfile}>
                 Save Changes
-              </Button>
-
+                </Button>
               </Modal.Footer>
             </Modal>
           </li>
           <li onClick={logout}>Log Out</li>
-
         </ul>
       </div>
-      <Chat channel={channel} className='smChat' />
+      <Chat channel={channel} description={description} className='smChat' />
     </div>
   );
 };

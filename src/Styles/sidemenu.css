@@ -124,3 +124,13 @@
   color: white;
 
 }
+
+.createGroup {
+  padding-top: 10px;
+}
+
+hr {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}

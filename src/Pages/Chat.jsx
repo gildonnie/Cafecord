@@ -12,7 +12,7 @@ function Chat(props) {
   const messagesEndRef = useRef(null);
   const msgRef = collection(db, "messages");
 
-  const { channel } = props;
+  const { channel, description } = props;
 
 
   const { selectedAvatar } = useContext(AvatarContext);//Changes the avatar img
@@ -99,11 +99,10 @@ function Chat(props) {
           <img className='chatLogo' src="/assets/cafeLogo2.jpg" />
           <h1>Cafecord</h1>
         </div>
-
+        <div><p className='description'>{description}</p></div>
 
         {/* Dynamic rendering of messages starts here */}
         {messageCollection.map((message) => {
-          // console.log(message.id)
 
           if (!message || !message.time) {
             return null;
@@ -123,7 +122,6 @@ function Chat(props) {
                     <Button className="deleteBtn" type="Button" onClick={() => deleteMessage(message.id)}>X</Button>
                   </div>
                   <p>{message.text}</p>
-                  {/* {console.log('Message:', message)} */}
                 </div>
               </div>
                <div ref={messagesEndRef} /> {/*Empty div for scrolling */}
@@ -131,15 +129,21 @@ function Chat(props) {
           )
         })}
         {/* Dynamic rendering of messages ends here */}
-
-        <textarea
-          className='text-input'
-          type='text' placeholder='Enter Message'
-          onKeyDown={handleKeyPress}
-          onChange={handleChange}
-          value={messages}
-        ></textarea>
-        <button className='sendBtn' onClick={addMessage}>Send</button>
+        {
+        channel ?
+          <> 
+            <textarea
+              className='text-input'
+              type='text' placeholder='Enter Message'
+              onKeyDown={handleKeyPress}
+              onChange={handleChange}
+              value={messages}
+            ></textarea>
+            <button className='sendBtn' onClick={addMessage}>Send</button>
+          </>
+         
+         : "Click a channel"
+        } 
       </div>
     </div>
   );

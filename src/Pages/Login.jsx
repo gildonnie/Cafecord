@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { auth, provider } from '../firebase.js';
@@ -23,7 +24,6 @@ const LoginBox = () => {
     try {
       await signInWithEmailAndPassword(auth, credentials.email, credentials.password)
         navigate('/Chat')
-      console.log('Login Success', response.data);
     } catch (error) {
       console.error('Login fail', error);
     }
