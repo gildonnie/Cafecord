@@ -134,3 +134,15 @@ hr {
   margin-left: auto;
   margin-right: auto;
 }
+
+#channels{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 40px;
+}
+
+.trashIcon {
+  margin-left: auto;
+  padding-right: 10px;
+}

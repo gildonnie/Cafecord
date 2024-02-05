@@ -2,13 +2,14 @@
 import { useEffect, useState } from 'react';
 import { db, auth } from '../firebase.js';
 import { signOut, onAuthStateChanged, updateProfile } from 'firebase/auth';
-import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
+import { collection, onSnapshot, query, orderBy, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import Chat from './Chat.jsx';
 import "../Styles/sidemenu.css";
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -118,6 +119,19 @@ const SideMenu = () => {
   };
   //highlights the active channel your currently in
 
+  const deleteChannel = async (id)  => {
+    if (confirm("Are you sure you want to delete this message?")) {
+      try {
+        const docPointer = doc(db, "channels", id)
+        await deleteDoc(docPointer)
+        window.location.reload();
+      } catch (error) {
+        console.error(error)
+      }
+      
+      }
+
+  }
 
   //uses singout function from firebase to signout user 
   const logout = async () => {
@@ -139,7 +153,19 @@ const SideMenu = () => {
 
         <ul className="channel-list">
           <li className="channel-heading">Channel</li>
-          {channelObj ? channelObj.map((channel) => <li onClick={() => handleChannel(channel)} key={channel.id}  className={channel.id === activeChannelId ? "active-channel" : ""}>{channel.title}</li>) : <li>No Channels</li>}
+          {channelObj ? 
+            channelObj.map((channel) => 
+            <li
+              onClick={() => handleChannel(channel)} 
+              key={channel.id}  
+              className={channel.id === activeChannelId ? "active-channel" : ""}
+              id="channels"
+            >
+              {channel.title}
+              <FontAwesomeIcon className="trashIcon" icon={faTrashAlt} onClick={() => deleteChannel(channel.id)} />
+            </li>
+            ) : <li>No Channels</li>
+          }
           <hr />
           <li className="createGroup"><Link to="/group-form">Create Group</Link></li>
           <li><Link to="/Products">Products</Link></li>
