@@ -86,6 +86,11 @@ const SideMenu = () => {
       let channels = []
       snapshot.forEach((channel) => {
         channels.push({ ...channel.data(), id: channel.id })
+        if(channels.length > 0){
+          setChannel(channels[0])
+          setActiveChannelId(channels[0].id);
+          setDescription(channels[0].description)
+        }
       })
       if (!isEqual(channels, channelObj)) {
 
