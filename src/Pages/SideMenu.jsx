@@ -5,7 +5,7 @@ import { signOut, onAuthStateChanged, updateProfile } from 'firebase/auth';
 import { collection, onSnapshot, query, orderBy, doc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import isEqual from 'lodash/isEqual';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import Chat from './Chat.jsx';
@@ -30,7 +30,6 @@ const SideMenu = () => {
 
   const navigate = useNavigate();
   const channelRef = collection(db, "channels");
-
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -172,7 +171,7 @@ const SideMenu = () => {
             ) : <li>No Channels</li>
           }
           <hr />
-          <li className="createGroup"><Link to="/group-form">Create Group</Link></li>
+          <li className="createGroup"><Link to="/newgroup">Create Group</Link></li>
           <li><Link to="/Products">Products</Link></li>
           <li>
             <button className='editBtn' onClick={handleShow}>
