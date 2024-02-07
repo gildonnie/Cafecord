@@ -29,7 +29,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* max-height: 70vh; */
   max-height: 80vh;
 }
 
@@ -58,8 +57,17 @@
     text-align: center;
     margin: 0 auto; 
     margin-top: 25px;
-    /* margin-top: 30px; */
 }
+.srOnly {
+    /* visible to screen reader only */
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+ }
+
 .form .inputEl {
     border-radius: 20px;
     margin: 15px auto;
@@ -67,14 +75,12 @@
     padding: 10px 20px;
     font-size: 1em;
     border: none;
-    /* margin: 5px 0; */
   
 }
 .form .inputEl:focus{
     background-color:#deccb5 ;
     box-shadow: 0 0 10px rgb(141, 58, 3);
     border: none;
-    /* height: 80%; */
 }
 .form .inputBlur{
     background-color: #deccb5;
