@@ -1,4 +1,26 @@
-.email-input {
+
+.img {
+  background-image: url('https://images.unsplash.com/photo-1522120573867-e574959f84c8?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+}
+
+.rightContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rightInnerContainer {
+  border-radius: 6px;
+  padding: 1.5rem 2rem;
+  background: #FFE8C7;
+  opacity: .97;
+  width: 100%;
+}
+
+.emailInput {
     width: 100%;
     border-radius: 2rem;
     background: #E4D2B7;
@@ -8,11 +30,11 @@
     margin-bottom: 1rem;
   }
   
-  .email-input::placeholder {
+  .emailInput::placeholder {
     color: #757575;
   }
   
-  .password-input {
+  .passwordInput {
     width: 100%;
     border-radius: 2rem;
     background: #E4D2B7;
@@ -21,8 +43,43 @@
     padding: 11px 23px;
   }
   
-  .password-input::placeholder {
+  .passwordInput::placeholder {
     color: #757575
+  }
+
+  .passwordVisibility {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    outline: none;
+  }
+
+  .loginBtn {
+    border: none;
+    border-radius: 2rem;
+    background-color: #ED6300;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 1rem;
+    transition: background-color 150ms ease;
+  }
+
+  .loginBtn:hover {
+    background-color: #d45800;
+  }
+
+  .loginBtn:active {
+    background-color: #ad4800;
+  }
+
+  .disabledLoginBtn {
+    cursor: not-allowed;
+  }
+
+  .disabledLoginBtn:hover {
+    background-color: #ED6300;
   }
   
   .divider {
@@ -58,56 +115,7 @@
     background-color: #E4D2B7;
   }
   
-  .img {
-    background-image: url('https://images.unsplash.com/photo-1522120573867-e574959f84c8?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-  }
-  
-  .right-container {
-    padding: 4rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  .right-inner-container {
-    border-radius: 6px;
-    padding: 1.5rem 2rem;
-    background: #FFE8C7;
-    opacity: .97;
-    width: 100%;
-  }
-  
-  .login-btn {
-    border: none;
-    border-radius: 2rem;
-    background-color: #ED6300;
-    color: white;
-    text-align: center;
-    padding: 12px;
-    margin-bottom: 1rem;
-    transition: background-color 150ms ease;
-  }
-
-  .login-btn:hover {
-    background-color: #d45800;
-  }
-
-  .login-btn:active {
-    background-color: #ad4800;
-  }
-  
-  .password-visibility {
-    position: absolute;
-    top: 50%;
-    right: 30px;
-    transform: translateY(-50%);
-    outline: none;
-  }
-  
-  .google-btn {
+  .googleBtn {
     background: inherit;
     outline: none;
     border: 1px solid #E2D0B6;
@@ -119,44 +127,23 @@
     margin-bottom: .5rem;
   }
 
-  .google-btn:hover {
+  .googleBtn:hover {
     background: #f2dcbd;
     border-color: rgb(182, 182, 182);
   }
 
-  .google-btn:active {
+  .googleBtn:active {
     background: #e5d0b2;
     border-color: rgb(140, 140, 140);
   }
   
-  .apple-btn {
-    background: inherit;
-    outline: none;
-    color: #4E4E4E;
-    border: 1px solid #E2D0B6;
-    width: 100%;
-    text-align: center;
-    border-radius: 32px;
-    padding: 3px 5px;
-    margin-bottom: .5rem;
-  }
-  
-  .no-account-text {
+  .noAccountText {
     color: #757575;
     font-size: 12px;
   }
   
-  .signup-anchor {
+  .signupAnchor {
     color: #ED6300;
-  }
-
-  .invalid-email {
-    background: rgb(255, 104, 104);
-    color: rgb(255, 255, 255);
-    padding: 3px 6px;
-    border-radius: 5px;
-    width: fit-content;
-    margin-left: 1rem;
   }
   
   @media screen and (min-width: 768px) {
@@ -164,12 +151,12 @@
       position: relative;
     }
   
-    .right-container {
+    .rightContainer {
       background: #FFE8C7;
       justify-content: center;
     }
   
-    .right-inner-container {
+    .rightInnerContainer {
       max-width: 480px;
     }
   }
