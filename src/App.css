@@ -1,9 +1,26 @@
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 } */
+
+/* START Austin's code */
+/* #root {
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  overflow: hidden;
+}*/
+/* END austin's code */
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 .h-screen {
   height: 100vh;

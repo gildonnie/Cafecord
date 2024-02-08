@@ -1,0 +1,52 @@
+.profileBackground{
+    height: 100vh;
+    width: 100%;
+    background-color: #99723a;
+    display: flex;
+}
+
+.profileLinks{
+    border-radius: 20px;
+    background-color: #99723a;
+    width: 55px;
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+}
+
+.epSideMenu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0c686;
+    width: 10%;
+}
+
+.avatarCard{
+    font-size: 35px;
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-direction: column;
+    border: #e0c686 solid;
+}
+
+.avatarImgs{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.avatarImgs img:hover{
+    outline: white solid 3px;
+    cursor: pointer;
+}
+
+.avatarImgs > img{
+    border-radius: 150px;
+    width: 200px;
+}
