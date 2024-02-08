@@ -6,7 +6,7 @@ function Products() {
     return (
         <div className="prodBackground">
             <div className="productsTitle">
-                <h1>Products</h1>
+                <h1>Try some coffee from our Sponsors!</h1>
             </div>
             <div className="products">
 
