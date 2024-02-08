@@ -27,7 +27,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/Chat" element={<Chat />} />
         <Route path='/EditProfile' element={<EditProfile />}/>
-        <Route path="/group-form" element={<CreateGroup/>}/>
+        <Route path="/newgroup" element={<CreateGroup/>}/>
         <Route path="/Products" element={<Products/>}/>
     </Routes> 
     </AvatarContext.Provider >                                                                                 

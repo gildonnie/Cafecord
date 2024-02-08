@@ -113,6 +113,15 @@ function Chat(props) {
           return (
             <div className='messages sent' key={message.id}>
               <div className="message-info">
+              
+              <Button
+                className="mobile-deleteBtn"
+                type="Button"
+                onClick={() => deleteMessage(message.id)}
+              >
+                x
+              </Button>
+
                 <img src={selectedAvatar || message.profileImg} alt="User Avatar" /> {/* Update avatar as needed */}
                 <div className='message-structure'>
                   <div className="message-details">

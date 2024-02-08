@@ -8,6 +8,7 @@
 }
 
 .productsTitle{
+    margin-top: 20px;
     text-align: center;
     width: 100%;
     margin-top: 20px;
@@ -21,6 +22,7 @@
     flex-direction: column;
     text-align: center;
     gap: 25px;
+    font-size:25px;
 }
 
 .products > img{
@@ -48,6 +50,36 @@
 @media (max-width:425px) {
     .products > img{
         width: 250px;
+    }
+    
+}
+
+.productsLink{ 
+    text-decoration: none;
+}
+
+.productsLinkDecor{
+    margin-top: 200px;
+}
+
+@media (max-width:425px) {
+    .products > img{
+        width: 300px;
+    }
+
+    .products{
+        font-size: 20px;
+    }
+    
+}
+
+@media (max-width:300px) {
+    .products > img{
+        width: 200px;
+    }
+
+    .products{
+        font-size: 15px;
     }
     
 }
