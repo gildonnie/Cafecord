@@ -12,6 +12,7 @@
     flex-direction: column;
 }
 
+
 .button-container {
     display: flex;
     flex-direction: column;
@@ -73,8 +74,9 @@
     margin-bottom: 20px;
     list-style-type: none;
     text-align: center;
-
 }
+
+
 .channel-list .channel-heading {
     font-weight: bold;
     font-size: 1.2em;
@@ -128,23 +130,6 @@
   overflow: hidden;
 }
 
-@media (max-width:800px) {
-  .side-menu{
-    width: 30%;
-  }
-
-  .avatar > img{
-    width: 100px;
-    height: 100px;
-  }
-
-  .textbox-container {
-    padding-left: 30%;
-    left: 0;
-    right: 0;
-  }
-  
-}
 
 .active-channel {
   background-color: #99723A;
@@ -172,4 +157,36 @@ hr {
 .trashIcon {
   margin-left: auto;
   padding-right: 10px;
+}
+
+@media (max-width:800px) {
+  .side-menu{
+    width: 30%;
+  }
+
+  .avatar > img{
+    width: 100px;
+    height: 100px;
+  }
+
+  .textbox-container {
+    padding-left: 30%;
+    left: 0;
+    right: 0;
+  }
+  
+}
+
+@media (max-width:425px) {
+  .trashIcon{
+    padding: 2px;
+    width: 10%;
+  }
+
+  #channels, .channel-list, .editBtn{
+    font-size: 14px;
+    text-align: left;
+    padding-left: 2px;
+  }
+  
 }
