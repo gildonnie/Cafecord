@@ -52,7 +52,7 @@ function EditProfile() {
                 <div key={`inline-${type}`} className="mb-3 formBody">
                   <Form.Check
                     inline
-                    label= {<img src= '/Avatars/Beeo-o.jpg' alt='social-media-cafe' className="avatar-option"/>}
+                    label= {<img src= '../src/Avatars/Beeo-o.jpg' alt='social-media-cafe' className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-1`}
@@ -63,7 +63,7 @@ function EditProfile() {
 
                   <Form.Check
                     inline
-                    label={<img src= '/Avatars/cafeart.jpg' alt='two-cafe-friends'className="avatar-option"/>}
+                    label={<img src= '../src/Avatars/cafeart.jpg' alt='two-cafe-friends'className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-2`}
@@ -71,7 +71,7 @@ function EditProfile() {
 
                   <Form.Check
                     inline
-                    label={<img src= '/Avatars/cafeart2.jpg' alt='lady-holding-coffee'className="avatar-option"/>}
+                    label={<img src= '../src/Avatars/cafeart2.jpg' alt='lady-holding-coffee'className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-3`}
@@ -79,7 +79,7 @@ function EditProfile() {
 
                   <Form.Check
                     inline
-                    label={<img src= '/Avatars/computerDog.jpg' alt='coding-dog'className="avatar-option"/>}
+                    label={<img src= '../src/Avatars/computerDog.jpg' alt='coding-dog'className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-4`}
@@ -88,7 +88,7 @@ function EditProfile() {
                   <label>
                   <Form.Check
                     inline
-                    label={<img src= '/Avatars/coffeeMaker2.jpg' alt='pink-cafe-girl' className="avatar-option"/>}
+                    label={<img src= '../src/Avatars/coffeeMaker2.jpg' alt='pink-cafe-girl' className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-7`}
@@ -98,7 +98,7 @@ function EditProfile() {
                   
                   <Form.Check
                     inline
-                    label={<img src= '/Avatars/coffeeBrewers2.jpg' alt='boy-walking-with-coffee' className="avatar-option" />}
+                    label={<img src= '../src/Avatars/coffeeBrewers2.jpg' alt='boy-walking-with-coffee' className="avatar-option" />}
                     name="group1"
                     type={type}
                     id={`inline-${type}-8`}

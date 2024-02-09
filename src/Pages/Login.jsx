@@ -44,7 +44,7 @@ const LoginBox = () => {
       <div className="row">
         <div className="col-md-6 nopadding">
           <img
-            src="./public/assets/loginimg.png"
+            src="../src/assets/loginimg.png"
             alt="coffee mugs"
             className="img-fluid rounded"
           />

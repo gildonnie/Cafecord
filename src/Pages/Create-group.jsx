@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Styles from '../Styles/Create-group.module.css';
-import Image from '../../public/assets/beautiful-coffee-image.png';
+import Image from '../assets/beautiful-coffee-image.png';
 import Stack from 'react-bootstrap/Stack';
 import { v4 as uuidv4 } from 'uuid';
 import { TiDelete } from "react-icons/ti";

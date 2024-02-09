@@ -50,12 +50,12 @@ const SideMenu = () => {
   const handleShow = () => setShow(true);
 
   const avatarList = [
-    {url: '/Avatars/Beeo-o.jpg', alt:'social-media-cafe'},
-    {url: '/Avatars/cafeart.jpg', alt: 'two-cafe-friends'},
-    {url: '/Avatars/cafeart2.jpg', alt: 'lady-holding-coffee'},
-    {url: '/Avatars/computerDog.jpg', alt: 'coding-dog'},
-    {url: '/Avatars/coffeeMaker2.jpg', alt: 'pink-cafe-girl'},
-    {url: '/Avatars/coffeeBrewers2.jpg', alt: 'boy-walking-with-coffee'}
+    {url: '../src/Avatars/Beeo-o.jpg', alt:'social-media-cafe'},
+    {url: '../src/Avatars/cafeart.jpg', alt: 'two-cafe-friends'},
+    {url: '../src/Avatars/cafeart2.jpg', alt: 'lady-holding-coffee'},
+    {url: '../src/Avatars/computerDog.jpg', alt: 'coding-dog'},
+    {url: '../src/Avatars/coffeeMaker2.jpg', alt: 'pink-cafe-girl'},
+    {url: '../src/Avatars/coffeeBrewers2.jpg', alt: 'boy-walking-with-coffee'}
   ]
   
   const handleProfile = async () => {
