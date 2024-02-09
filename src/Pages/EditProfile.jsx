@@ -1,28 +1,3 @@
-// import { Link } from "react-router-dom";
-// import styles from '../Styles/EditProfile.module.css';
-
-//  function EditProfile() {
-
-
-//     return(
-//         <div className={styles.profileBackground}>
-//             <div className={styles.epSideMenu}><Link className={styles.profileLinks} to={'/Chat'}>Chat</Link></div>
-//             <div className={styles.avatarCard}>
-//                 <p>Select New Avatar</p>
-//                 <img src="/Avatars/coffeeBrewers.jpg" alt="Coffee Brewer" />
-//                 <img src="/Avatars/coffeeBrewers2.jpg" alt="Coffee Brewer" />
-//                 <img src="/Avatars/coffeeMaker1.jpg" alt="Coffee Brewer" />
-//                 <img src="/Avatars/coffeeMaker2.jpg" alt="Coffee Brewer" />
-//                 <img src="/Avatars/coffeeMaker3.jpg" alt="Coffee Brewer" />
-//             </div>
-            
- 
-//         </div>
-//     )
-// }
-
-// export default EditProfile;
-
 
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
@@ -30,10 +5,6 @@ import "../Styles/Modal.css"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-//import FormCheck from 'react-bootstrap/FormCheck'
-//import ToggleButton from 'react-bootstrap/ToggleButton';
-//import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-
 function EditProfile() {
 
   const [show, setShow] = useState(false);
@@ -48,13 +19,9 @@ function EditProfile() {
         <Link to={'/Chat'}><Button>Chat</Button></Link>
       </div>
       <h3>Chat area</h3>
-      {/* <Button><Link to={'/Chat'} >Chat</Link></Button> */}
-      {/* Button to open react-bootstrap modal to user's edit profile, button has been customized using variant */}
-      
       <Button variant="open-modal" onClick={handleShow}>
         Edit Profile
       </Button>
-
       {/* Modal area for user to edit profile */}
       <Modal show={show} onHide={handleClose} >
         <Modal.Header closeButton>
