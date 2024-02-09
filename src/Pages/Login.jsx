@@ -5,8 +5,6 @@ import { auth, provider } from '../firebase.js';
 import { signInWithPopup,  signInWithEmailAndPassword } from 'firebase/auth';
 import LoginImg from '../assets/loginimg.png';
 import '../Styles/LoginBox.css';
- // import axios from 'axios'; for api, but not sure what api we got goin on
- // error installing react-google-login and api is confusing
 
 const LoginBox = () => {
   
