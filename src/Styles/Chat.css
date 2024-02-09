@@ -27,7 +27,7 @@
   max-width: 100%;
   min-width: 90%;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("../assets//cafe.jpg");
+    url("../assets/cafe.jpg");
   /* Using the background-image property with a linear gradient: The background-image property in CSS supports the use of multiple backgrounds that are layered on top of each other. 
     Using the linear-gradient property, a black colored background is used as the front layer and the image to be darkened is used as the back layer. 
     The order of the background-image property specifies the front layer to be specified first before defining the layers at the back. 
