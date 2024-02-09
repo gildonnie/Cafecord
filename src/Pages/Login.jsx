@@ -20,7 +20,6 @@ const LoginBox = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // replace backend/api/login with whatever api thing we got
     try {
       await signInWithEmailAndPassword(auth, credentials.email, credentials.password)
         navigate('/Chat')
