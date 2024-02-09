@@ -56,7 +56,7 @@ const SideMenu = () => {
   const handleShow = () => setShow(true);
 
   const avatarList = [
-    {url: '../src/Avatars/Beeo-o.jpg', alt:'social-media-cafe'},
+    {url: Beeo, alt:'social-media-cafe'},
     {url: Cafeart, alt: 'two-cafe-friends'},
     {url: Cafeart2, alt: 'lady-holding-coffee'},
     {url: ComputerDog, alt: 'coding-dog'},
