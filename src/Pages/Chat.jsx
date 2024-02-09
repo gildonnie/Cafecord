@@ -122,8 +122,7 @@ function Chat(props) {
               >
                 x
               </Button>
-
-                <img src={selectedAvatar || message.profileImg} alt="User Avatar" /> {/* Update avatar as needed */}
+                <img src={selectedAvatar || `../src${message.profileImg}`} alt="User Avatar" /> {/* Update avatar as needed */}
                 <div className='message-structure'>
                   <div className="message-details">
                     <p>{message.user}</p> {/* Replace with actual sender name */}
