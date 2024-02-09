@@ -96,7 +96,7 @@ function Chat(props) {
     <div className='chatBackground'>
       <div className='ChatMainBody'>
         <div className='chat-title'>
-          <img className='chatLogo' src="../assets/cafeLogo2.jpg" />
+          <img className='chatLogo' src="/assets/cafeLogo2.jpg" />
           <h1>Cafecord</h1>
         </div>
         <div><p className='description'>{description}</p></div>

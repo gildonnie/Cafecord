@@ -19,9 +19,13 @@ function EditProfile() {
         <Link to={'/Chat'}><Button>Chat</Button></Link>
       </div>
       <h3>Chat area</h3>
+      {/* <Button><Link to={'/Chat'} >Chat</Link></Button> */}
+      {/* Button to open react-bootstrap modal to user's edit profile, button has been customized using variant */}
+      
       <Button variant="open-modal" onClick={handleShow}>
         Edit Profile
       </Button>
+
       {/* Modal area for user to edit profile */}
       <Modal show={show} onHide={handleClose} >
         <Modal.Header closeButton>

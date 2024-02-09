@@ -7,7 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth, provider } from '../firebase.js';
-import profileImg from '../assets/profile-image.png';
+import profileImg from '/assets/profile-image.png';
 import {
   createUserWithEmailAndPassword,
   signInWithPopup,
