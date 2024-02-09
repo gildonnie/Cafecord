@@ -5,6 +5,7 @@ import isEqual from 'lodash/isEqual';
 import Button from 'react-bootstrap/Button';
 import "../Styles/Chat.css";
 import AvatarContext from './AvatarContext';//Changes the avatar img
+import CafeLogo2 from '../assets/cafeLogo2.jpg';
 
 function Chat(props) {
   const [messages, setMessages] = useState("")
@@ -96,7 +97,7 @@ function Chat(props) {
     <div className='chatBackground'>
       <div className='ChatMainBody'>
         <div className='chat-title'>
-          <img className='chatLogo' src="../src/assets/cafeLogo2.jpg" />
+          <img className='chatLogo' src={CafeLogo2} />
           <h1>Cafecord</h1>
         </div>
         <div><p className='description'>{description}</p></div>

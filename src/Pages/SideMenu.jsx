@@ -13,6 +13,12 @@ import "../Styles/sidemenu.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Beeo from '../Avatars/Beeo-o.jpg';
+import Cafeart from '../Avatars/cafeart.jpg';
+import Cafeart2 from '../Avatars/cafeart2.jpg';
+import ComputerDog from '../Avatars/computerDog.jpg';
+import CofffeMaker2 from '../Avatars/coffeeMaker2.jpg';
+import CoffeBrewers2 from '../Avatars/coffeeBrewers2.jpg';
 
 const SideMenu = () => {
 
@@ -51,11 +57,11 @@ const SideMenu = () => {
 
   const avatarList = [
     {url: '../src/Avatars/Beeo-o.jpg', alt:'social-media-cafe'},
-    {url: '../src/Avatars/cafeart.jpg', alt: 'two-cafe-friends'},
-    {url: '../src/Avatars/cafeart2.jpg', alt: 'lady-holding-coffee'},
-    {url: '../src/Avatars/computerDog.jpg', alt: 'coding-dog'},
-    {url: '../src/Avatars/coffeeMaker2.jpg', alt: 'pink-cafe-girl'},
-    {url: '../src/Avatars/coffeeBrewers2.jpg', alt: 'boy-walking-with-coffee'}
+    {url: Cafeart, alt: 'two-cafe-friends'},
+    {url: Cafeart2, alt: 'lady-holding-coffee'},
+    {url: ComputerDog, alt: 'coding-dog'},
+    {url: CofffeMaker2, alt: 'pink-cafe-girl'},
+    {url: CoffeBrewers2, alt: 'boy-walking-with-coffee'}
   ]
   
   const handleProfile = async () => {

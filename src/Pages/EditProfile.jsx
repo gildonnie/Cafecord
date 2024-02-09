@@ -1,10 +1,16 @@
-
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
 import "../Styles/Modal.css"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Beeo from '../Avatars/Beeo-o.jpg';
+import Cafeart from '../Avatars/cafeart.jpg';
+import Cafeart2 from '../Avatars/cafeart2.jpg';
+import ComputerDog from '../Avatars/computerDog.jpg';
+import CofffeMaker2 from '../Avatars/coffeeMaker2.jpg';
+import CoffeBrewers2 from '../Avatars/coffeeBrewers2.jpg';
+
 function EditProfile() {
 
   const [show, setShow] = useState(false);
@@ -52,7 +58,7 @@ function EditProfile() {
                 <div key={`inline-${type}`} className="mb-3 formBody">
                   <Form.Check
                     inline
-                    label= {<img src= '../src/Avatars/Beeo-o.jpg' alt='social-media-cafe' className="avatar-option"/>}
+                    label= {<img src={Beeo} alt='social-media-cafe' className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-1`}
@@ -63,7 +69,7 @@ function EditProfile() {
 
                   <Form.Check
                     inline
-                    label={<img src= '../src/Avatars/cafeart.jpg' alt='two-cafe-friends'className="avatar-option"/>}
+                    label={<img src={Cafeart} alt='two-cafe-friends'className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-2`}
@@ -71,7 +77,7 @@ function EditProfile() {
 
                   <Form.Check
                     inline
-                    label={<img src= '../src/Avatars/cafeart2.jpg' alt='lady-holding-coffee'className="avatar-option"/>}
+                    label={<img src={Cafeart2} alt='lady-holding-coffee'className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-3`}
@@ -79,7 +85,7 @@ function EditProfile() {
 
                   <Form.Check
                     inline
-                    label={<img src= '../src/Avatars/computerDog.jpg' alt='coding-dog'className="avatar-option"/>}
+                    label={<img src={ComputerDog} alt='coding-dog'className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-4`}
@@ -88,7 +94,7 @@ function EditProfile() {
                   <label>
                   <Form.Check
                     inline
-                    label={<img src= '../src/Avatars/coffeeMaker2.jpg' alt='pink-cafe-girl' className="avatar-option"/>}
+                    label={<img src={CofffeMaker2} alt='pink-cafe-girl' className="avatar-option"/>}
                     name="group1"
                     type={type}
                     id={`inline-${type}-7`}
@@ -98,7 +104,7 @@ function EditProfile() {
                   
                   <Form.Check
                     inline
-                    label={<img src= '../src/Avatars/coffeeBrewers2.jpg' alt='boy-walking-with-coffee' className="avatar-option" />}
+                    label={<img src={CoffeBrewers2} alt='boy-walking-with-coffee' className="avatar-option" />}
                     name="group1"
                     type={type}
                     id={`inline-${type}-8`}
