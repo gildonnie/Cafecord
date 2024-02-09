@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { db, auth } from '../firebase.js';
 import { collection, serverTimestamp, addDoc, onSnapshot, query, where, orderBy, doc, deleteDoc } from 'firebase/firestore';
 import isEqual from 'lodash/isEqual';
 import Button from 'react-bootstrap/Button';
 import "../Styles/Chat.css";
-import AvatarContext from './AvatarContext';//Changes the avatar img
+// import AvatarContext from './AvatarContext';//Changes the avatar img
 import CafeLogo2 from '../assets/cafeLogo2.jpg';
 
 function Chat(props) {
@@ -16,7 +16,7 @@ function Chat(props) {
   const { channel, description } = props;
 
 
-  const { selectedAvatar } = useContext(AvatarContext);//Changes the avatar img
+  // const { selectedAvatar } = useContext(AvatarContext);//Changes the avatar img
 
   //The object is composed of values one of them being channel which is the id of the channel, which is used to grab only those messages with that channel id
   const addMessage = async (e) => {
@@ -122,7 +122,7 @@ function Chat(props) {
               >
                 x
               </Button>
-                <img src={selectedAvatar || `../src${message.profileImg}`} alt="User Avatar" /> {/* Update avatar as needed */}
+                <img src={message.profileImg} alt="User Avatar" /> {/* Update avatar as needed */}
                 <div className='message-structure'>
                   <div className="message-details">
                     <p>{message.user}</p> {/* Replace with actual sender name */}
